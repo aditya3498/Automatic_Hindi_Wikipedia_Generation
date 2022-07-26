@@ -18,7 +18,7 @@ for i in range(1, 250):
 
 		for key, val in final_data.items():
 
-			if 'सैन्य शाखा' in val['Hindi'] and 'सैनिक स्तर;' in val['Hindi']:
+			if 'परिवार का नाम' in val['Hindi']:
 
 				print(i)
 
@@ -42,7 +42,7 @@ for i in range(1, 250):
 
 		for key, val in final_data.items():
 
-			if 'इसमें अनुरक्त' in val['Hindi'] and 'शैली' in val['Hindi']:
+			if 'संबंधी' in val['Hindi'] and 'संबंधन' in val['Hindi']:
 
 				print(i)
 
