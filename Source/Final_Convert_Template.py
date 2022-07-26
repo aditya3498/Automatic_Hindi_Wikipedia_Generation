@@ -18,7 +18,7 @@ for i in range(1, 250):
 
 		for key, val in final_data.items():
 
-			if 'परिवार का नाम' in val['Hindi']:
+			if 'जातीय समूह' in val['Hindi'] and i != 1:
 
 				print(i)
 
