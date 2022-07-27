@@ -1,0 +1,52 @@
+AIM : First sentence with all 3, then with 2 at a time(3 sentences) and then 3 more single token sentences. Thus total for 3 keys at a time, i would get 7 sentences. The logic of having 7 sentences is that let's say one of the scientist does not have one of the keys, then obviosuly the sentence with all 3 would not be the starting sentence, thus we would be shifting to the 3 2keys sentence. And we will choose the sentence out of that that has those 2 keys. Also, take a case wherein the scientist has only 1 out of the 3 group of keys i have chosen, then the sentence with all 3 and all 3 sentences of 2 keys will not be used. Then we would shift to the 3 single token sentences and choose the one which has that key. Thus out of these 7 sentences, we will always have 1 sentence chosen given whatveer combination of keys is presernt out there for that particuar scientist.
+
+Groups of Keys:
+
+1. व्यवसाय 
+2. जन्म तिथि   
+3. जन्म स्थान 
+
+1. उल्लेखनीय कार्य 
+2. कार्य क्षेत्र
+
+1. नामांकित किया गया
+2. पुरस्कार प्राप्त - Reason for getting award(Extra Information)
+
+1. नागरिकता
+2. मातृसंस्था
+3. शैक्षिक दर्जा/उपाधि
+
+1. मृत्यु का स्थान
+2. मृत्यु तिथि
+3. मृत्यु का कारण
+4. अंतिम विश्राम का स्थान
+
+1. बोली या लेखी भाषा
+2. मातृ भाषा
+
+1. डॉक्टरेट सलाहकार
+2. डॉक्टरेट छात्र
+3. छात्र
+4. के छात्र
+
+1. का सदस्य
+2. राजनीतिक दल के सदस्य
+3. का भाग
+
+1. जीवन साथी
+2. बच्चों की संख्या
+3. संतान
+
+1. सैनिक स्तर;
+2. सैन्य शाखा
+3. संघर्ष में भाग लिया
+
+1. पिता
+2. माता
+3. संबंधी
+4. दिया गया नाम
+
+1. संबंधन
+2. परिवार
+3. परिवार का नाम
+4. जातीय समूह
