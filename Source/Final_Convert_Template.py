@@ -8,7 +8,7 @@ frequency_item, inverse_document_item = {}, {}
 
 for i in range(1, 250):
 
-	with open('../Data/FinalData_1_2500/Cool' + str(i) + '.json', 'r') as fin:
+	with open('../Data/FinalData/FinalData_1_2500/Cool' + str(i) + '.json', 'r') as fin:
 
 		for line in fin:
 
@@ -18,7 +18,7 @@ for i in range(1, 250):
 
 		for key, val in final_data.items():
 
-			if 'नियोक्ता' in val['Hindi']:
+			if 'पद पर आसीन' in val['Hindi']:
 
 				print(i)
 

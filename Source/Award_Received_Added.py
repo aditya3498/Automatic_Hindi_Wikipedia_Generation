@@ -10,7 +10,7 @@ exceptions = {}
 
 for i in range(1501, 1721):
 
-	with open('FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'r') as fin:
+	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'r') as fin:
 
 		for line in fin:
 
@@ -78,7 +78,7 @@ for i in range(1501, 1721):
 
 				print("NO AWARD KEY FOUND")
 
-	with open('FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'w') as fout:
+	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'w') as fout:
 
 		json.dump(final_data, fout)
 
@@ -86,7 +86,7 @@ final_data = []
 
 for key, val in exceptions.items():
 
-	with open('FinalData/FinalData_15000_Final/Cool' + str(val) + '.json', 'r') as fin:
+	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(val) + '.json', 'r') as fin:
 
 		for line in fin:
 
@@ -98,6 +98,6 @@ for key, val in exceptions.items():
 
 		print(final_data[key]['Hindi'].keys())
 
-	with open('FinalData/FinalData_15000_Final/Cool' + str(val) + '.json', 'w') as fout:
+	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(val) + '.json', 'w') as fout:
 
 		json.dump(final_data, fout)

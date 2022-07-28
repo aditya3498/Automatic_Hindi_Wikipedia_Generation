@@ -4,7 +4,7 @@ from collections import OrderedDict
 
 count, flag_count, flag_count_1 = 0, 0, 0
 
-with open('FinalData/FinalData_15000_Final/Cool/English_Translated_5.json', 'r') as fin:
+with open('../Data/FinalData/FinalData_15000_Final/Cool/English_Translated_5.json', 'r') as fin:
 
 	for line in fin:
 
@@ -176,6 +176,6 @@ for i in range(1501, 1721):
 
 		print("\n")
 
-	with open('FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'w') as fout:
+	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'w') as fout:
 
 		json.dump(Hindi_Pairs_Old, fout)
