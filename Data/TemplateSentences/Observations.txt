@@ -18,6 +18,6 @@ Observations:
  13. 
 
 
- 2. In the awards recieved section of the Wikidata page, an important discovery was made that there was another level of informmaiton present such as the reason for the award being given. For elite awards like the Nobel Prize, this was an extreely importnt peice of information which should be a part of any Scientists wiki page
+ 2. In the awards recieved section of the Wikidata page, an important discovery was made that there was another level of informaiton present such as the reason for the award being given. For elite awards like the Nobel Prize, this was an extremely important piece of information which should be a part of any Scientists wiki page
 
  3. For Ethnic group remember to split the words with delimiter as space and choose only the first name.
