@@ -18,7 +18,7 @@ for i in range(1, 250):
 
 		for key, val in final_data.items():
 
-			if 'धर्म' in val['Hindi'] and 'धार्मिक आदेश' in val['Hindi'] and i != 16:
+			if 'सहोदर' in val['Hindi']:
 
 				print(i)
 
