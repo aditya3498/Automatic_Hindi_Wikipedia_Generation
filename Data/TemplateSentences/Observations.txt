@@ -1,6 +1,6 @@
 Observations:
 
-1. Analysing English and Hindi Wikipedia Pages to see the order of sentences so that in my template sentences i can pre decide the .
+1. Analysing English and Hindi Wikipedia Pages to see the order of sentences so that in my template sentences i can pre decide the same
 
  ORDER FOUND:
  1. Date of Birth - जन्म तिथि
@@ -15,11 +15,11 @@ Observations:
  10. student of 
  11. student
  12. work location
- 13. 
-
 
  2. In the awards recieved section of the Wikidata page, an important discovery was made that there was another level of informaiton present such as the reason for the award being given. For elite awards like the Nobel Prize, this was an extremely important piece of information which should be a part of any Scientists wiki page
 
  3. For Ethnic group remember to split the words with delimiter as space and choose only the first name. 
 
  4. I have pre used Gender and Date of death to identify the alive status of the person and accordingly used past and present tense.
+
+ 5. For the key wherein life partner is mentioned, the ke/ki gets switched which means if the life partner is male, ki is used when it should have been ke, and vice versa if the life partner is a female. This is an interesting point observed in Hindi, wherein the gender of a word and the corresponding post - position are opposite compared to how it always is. Such nuances are important and should be considered while making template sentences. Even the thi/the gets switched in this particular case.

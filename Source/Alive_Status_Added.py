@@ -18,6 +18,8 @@ for i in range(1, 2):
 
 				val['Hindi']['alivestatus/wgok'] = ['थी', 'था']
 
+				val['Hindi']['alivestatus'] = ['था']
+
 				if val['Hindi']['लिंग'][0] == 'महिला':
 
 					val['Hindi']['alivestatus/wgop'] = ['थी']
@@ -27,6 +29,8 @@ for i in range(1, 2):
 					val['Hindi']['के/की'] = ['की']
 
 					val['Hindi']['रखती/रखते'] = ['रखती']
+
+					val['Hindi']['जुड़े/जुडी'] = ['जुडी']
 
 				else:
 
@@ -38,13 +42,15 @@ for i in range(1, 2):
 
 					val['Hindi']['रखती/रखते'] = ['रखते']
 
+					val['Hindi']['जुड़े/जुडी'] = ['जुड़े']
+
 			except:
 
 				val['Hindi']['alivestatus'] = ['है']
 
-				val['Hindi']['alivestatus/wgop'] = ['है']
+				val['Hindi']['alivestatus/wgok'] = ['है']
 
-				val['Hindi']['alivestatus/wogop'] = ['है']
+				val['Hindi']['alivestatus/wgop'] = ['है']
 
 				if val['Hindi']['लिंग'][0] == 'महिला':
 
@@ -54,6 +60,8 @@ for i in range(1, 2):
 
 					val['Hindi']['के/की'] = ['की']
 
+					val['Hindi']['जुड़े/जुडी'] = ['जुडी']
+
 				else:
 
 					val['Hindi']['हुए/हुई'] = ['हुए']
@@ -61,6 +69,8 @@ for i in range(1, 2):
 					val['Hindi']['रखती/रखते'] = ['रखते']
 
 					val['Hindi']['के/की'] = ['के']
+
+					val['Hindi']['जुड़े/जुडी'] = ['जुड़े']
 
 			print(key, val)
 

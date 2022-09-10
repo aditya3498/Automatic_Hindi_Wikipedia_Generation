@@ -18,7 +18,7 @@ for i in range(1, 250):
 
 		for key, val in final_data.items():
 
-			if 'शैली' in val['Hindi']:
+			if 'कार्य क्षेत्र' in val['Hindi']:
 
 				print(i)
 
