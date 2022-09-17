@@ -60,7 +60,7 @@ for i in range(1501, 1721):
 
 				except:
 
-					print("AWARD RECIEVED KEY PRESENT WHEN IT SHOULD NOT HAVE")
+					print("AWARD RECEIVED KEY PRESENT WHEN IT SHOULD NOT HAVE")
 
 					print(key)
 
