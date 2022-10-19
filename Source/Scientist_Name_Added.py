@@ -10,7 +10,7 @@ for i in range(1501, 1721):
 
     for key, val in finaldata.items():
 
-        val['Hindi']['Scientist'] = str(key)
+        val['Hindi']['Scientist'] = [str(key)]
 
     with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'w') as fout:
 

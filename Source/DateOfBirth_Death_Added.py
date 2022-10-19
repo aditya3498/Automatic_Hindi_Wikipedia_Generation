@@ -24,70 +24,74 @@ def month_to_text(month):
 
 	return switcher.get(month, "N/A")
 
-for i in range(50, 250):
+for i in range(1501, 1721):
 
-	with open('../Data/FinalData/FinalData_1_2500/Cool' + str(i) + '.json', 'r') as fin:
+	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'r') as fin:
 
 		for line in fin:
 
 			finaldata = json.loads(line)
 
-		for key, val in finaldata.items():
+	for key, val in finaldata.items():
 
-			for k, value in val['Hindi'].items():
+		for k, value in val['Hindi'].items():
 
-				if k == 'जन्म तिथि':
+			if k == 'जन्म तिथि':
 
-					dob = value[0]['time'][1:11].split('-')
+				print(value)
 
-					if int(dob[1]) == 0 and int(dob[2]) == 0:
+				print(i)
 
-						final_dob = date(int(dob[0]), 1, 1)
+				dob = value[0]['time'][1:11].split('-')
 
-						val['Hindi'].update({k : [str(final_dob.year)]})
+				if int(dob[1]) == 0 and int(dob[2]) == 0:
 
-					elif int(dob[2]) == 0 and int(dob[1]) != 0:
+					final_dob = date(int(dob[0]), 1, 1)
 
-						final_dob = date(int(dob[0]), int(dob[1]), 1)
+					val['Hindi'].update({k : [str(final_dob.year)]})
 
-						dob_text_final = month_to_text(final_dob.month) + " " + str(final_dob.year)
+				elif int(dob[2]) == 0 and int(dob[1]) != 0:
 
-						val['Hindi'].update({k : [dob_text_final]})
+					final_dob = date(int(dob[0]), int(dob[1]), 1)
 
-					else:
+					dob_text_final = month_to_text(final_dob.month) + " " + str(final_dob.year)
 
-						final_dob = date(int(dob[0]), int(dob[1]), int(dob[2]))
+					val['Hindi'].update({k : [dob_text_final]})
 
-						dob_text_final = str(final_dob.day) + " " + month_to_text(final_dob.month) + " " + str(final_dob.year)
+				else:
 
-						val['Hindi'].update({k : [dob_text_final]})
+					final_dob = date(int(dob[0]), int(dob[1]), int(dob[2]))
 
-				if k == 'मृत्यु तिथि':
+					dob_text_final = str(final_dob.day) + " " + month_to_text(final_dob.month) + " " + str(final_dob.year)
 
-					dob = value[0]['time'][1:11].split('-')
+					val['Hindi'].update({k : [dob_text_final]})
 
-					if int(dob[1]) == 0 and int(dob[2]) == 0:
+			if k == 'मृत्यु तिथि':
 
-						final_dob = date(int(dob[0]), 1, 1)
+				dob = value[0]['time'][1:11].split('-')
 
-						val['Hindi'].update({k : [str(final_dob.year)]})
+				if int(dob[1]) == 0 and int(dob[2]) == 0:
 
-					elif int(dob[2]) == 0 and int(dob[1]) != 0:
+					final_dob = date(int(dob[0]), 1, 1)
 
-						final_dob = date(int(dob[0]), int(dob[1]), 1)
+					val['Hindi'].update({k : [str(final_dob.year)]})
 
-						dob_text_final = month_to_text(final_dob.month) + " " + str(final_dob.year)
+				elif int(dob[2]) == 0 and int(dob[1]) != 0:
 
-						val['Hindi'].update({k : [dob_text_final]})
+					final_dob = date(int(dob[0]), int(dob[1]), 1)
 
-					else:
+					dob_text_final = month_to_text(final_dob.month) + " " + str(final_dob.year)
 
-						final_dob = date(int(dob[0]), int(dob[1]), int(dob[2]))
+					val['Hindi'].update({k : [dob_text_final]})
 
-						dob_text_final = str(final_dob.day) + " " + month_to_text(final_dob.month) + " " + str(final_dob.year)
+				else:
 
-						val['Hindi'].update({k : [dob_text_final]})
+					final_dob = date(int(dob[0]), int(dob[1]), int(dob[2]))
 
-	with open('../Data/FinalData/FinalData_1_2500/Cool' + str(i) + '.json', 'w') as fout:
+					dob_text_final = str(final_dob.day) + " " + month_to_text(final_dob.month) + " " + str(final_dob.year)
+
+					val['Hindi'].update({k : [dob_text_final]})
+
+	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'w') as fout:
 
 		json.dump(finaldata, fout)

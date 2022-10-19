@@ -1,7 +1,7 @@
 import json, re
 
 def import_all_data():
-
+	
 	finaldata_1_2500, finaldata_2500_6000, finaldata_10000_12500, finaldata_6000_10000, finaldata_12500_15000, finaldata_15000_Final = [], [], [], [], [], []
 
 	with open('../Data/TemplateSentences/Template_Sentences_Triple_Pair_Sentences.json', 'r') as fin:
@@ -130,26 +130,62 @@ def get_data_from_name():
 
 	return template_data
 
-def template_creation():
+def template_creation_single_third():
+
+	return 0
+
+def template_creation_double_second():
+
+	return 0
+
+def template_creation_triple_first():
 
 	triple_pair, double_pair, single_pair, finaldata_1_2500, finaldata_2500_6000, finaldata_6000_10000, finaldata_10000_12500, finaldata_12500_15000, finaldata_15000_Final = import_all_data()
 
 	template_data = get_data_from_name()
 
-	triple_pair_keys_combo = {}
+	triple_pair_dict, triple_pair_dict_sentence_regex = {}, {}
 
 	count = 1
 
 	for sentence in triple_pair:
 
-		sentence_pairs = sentence.split()
-
 		keys = re.findall(r'\{\{(.*?)\}\}', sentence)
 
-		triple_pair_keys_combo[count] = {sentence : sentence_pairs}
+		triple_pair_dict[count] = sentence
+
+		triple_pair_dict_sentence_regex[count] = keys
 
 		count += 1
 
-		print(keys)
+	print(triple_pair_dict)
 
-template_creation()
+	print(triple_pair_dict_sentence_regex)
+
+	print(template_data)
+
+	list_keys_scientist = [key for key in template_data]
+
+	for key, val in triple_pair_dict_sentence_regex.items():
+
+		temp_scientist_list = []
+
+		list_check = [x for x in val if x not in list_keys_scientist]
+
+		if not list_check:
+
+			for i in range(0, len(val)):
+
+				if len(template_data[val[i]]) <= 1:
+
+					temp_scientist_list.append(template_data[val[i]][0])
+
+				else:
+
+					temp_scientist_list.append(template_data[val[i]])
+
+		print(temp_scientist_list)
+
+		print(key, val)
+
+template_creation_triple_first()

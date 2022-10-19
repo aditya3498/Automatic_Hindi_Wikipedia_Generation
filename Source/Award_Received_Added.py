@@ -16,67 +16,61 @@ for i in range(1501, 1721):
 
 			final_data = json.loads(line)
 
-		#print(final_data)
+	for key, val in final_data.items():
 
-		#print("\n")
+		award_qid_dict = {}
 
-		#print(final_data)
+		if 'पुरस्कार प्राप्त' in val['Hindi']:
 
-		for key, val in final_data.items():
+			try:
 
-			award_qid_dict = {}
+				x = get_entity_dict_from_api(str(key))['claims']['P166']
 
-			if 'पुरस्कार प्राप्त' in val['Hindi']:
+				for item in x:
 
-				try:
+					if 'qualifiers' in item.keys():
 
-					x = get_entity_dict_from_api(str(key))['claims']['P166']
+						if 'P6208' in item['qualifiers'].keys():
 
-					for item in x:
+							text = item['qualifiers']['P6208'][0]['datavalue']['value']['text']
 
-						if 'qualifiers' in item.keys():
+							try:
 
-							if 'P6208' in item['qualifiers'].keys():
+								label = get_entity_dict_from_api(item['mainsnak']['datavalue']['value']['id'])['labels']['hi']['value']
 
-								text = item['qualifiers']['P6208'][0]['datavalue']['value']['text']
+							except:
 
-								try:
+								label = get_entity_dict_from_api(item['mainsnak']['datavalue']['value']['id'])['labels']['en']['value']
 
-									label = get_entity_dict_from_api(item['mainsnak']['datavalue']['value']['id'])['labels']['hi']['value']
+							award_qid_dict[label] = text
 
-								except:
+				for k, v in award_qid_dict.items():
 
-									label = get_entity_dict_from_api(item['mainsnak']['datavalue']['value']['id'])['labels']['en']['value']
+					if k in val['Hindi']['पुरस्कार प्राप्त']:
 
-								award_qid_dict[label] = text
+						value.append({k : v})
 
-					for k, v in award_qid_dict.items():
+						value.remove(k)
 
-						if k in val['Hindi']['पुरस्कार प्राप्त']:
+			except:
 
-							value.append({k : v})
+				print("AWARD RECEIVED KEY PRESENT WHEN IT SHOULD NOT HAVE")
 
-							value.remove(k)
-
-				except:
-
-					print("AWARD RECEIVED KEY PRESENT WHEN IT SHOULD NOT HAVE")
-
-					print(key)
-
-					print(i)
-
-					exceptions[key] = i
+				print(key)
 
 				print(i)
 
-				print(award_qid_dict)
+				exceptions[key] = i
 
-			else:
+			print(i)
 
-				print(i)
+			print(award_qid_dict)
 
-				print("NO AWARD KEY FOUND")
+		else:
+
+			print(i)
+
+			print("NO AWARD KEY FOUND")
 
 	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'w') as fout:
 
@@ -92,11 +86,11 @@ for key, val in exceptions.items():
 
 			final_data = json.loads(line)
 
-		print(final_data[key]['Hindi'].keys())
+	print(final_data[key]['Hindi'].keys())
 
-		final_data[key]['Hindi'] = {k : v for k, v in final_data[key]['Hindi'].items() if k != 'पुरस्कार प्राप्त'}
+	final_data[key]['Hindi'] = {k : v for k, v in final_data[key]['Hindi'].items() if k != 'पुरस्कार प्राप्त'}
 
-		print(final_data[key]['Hindi'].keys())
+	print(final_data[key]['Hindi'].keys())
 
 	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(val) + '.json', 'w') as fout:
 

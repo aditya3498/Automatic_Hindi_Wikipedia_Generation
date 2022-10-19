@@ -23,3 +23,10 @@ Observations:
  4. I have pre used Gender and Date of death to identify the alive status of the person and accordingly used past and present tense.
 
  5. For the key wherein life partner is mentioned, the ke/ki gets switched which means if the life partner is male, ki is used when it should have been ke, and vice versa if the life partner is a female. This is an interesting point observed in Hindi, wherein the gender of a word and the corresponding post - position are opposite compared to how it always is. Such nuances are important and should be considered while making template sentences. Even the thi/the gets switched in this particular case.
+
+ 6. Data preprocessing also involved making 6-7 additional changes regarding additional information pertaining to the individual like Alive status, gender
+
+ 7. Alive status was a big problem as alive status in hindi depends on gender of the key or gender of the person involved which is not the case in English.
+ For example: वह {{धर्म}} धरम {के/की} अनुयायी {alivestatus/wgop} where we can see here that it would be thi or the depending on whether the vah refers to female or male. An example where it depends on the key is उनकी संतान {{संतान}} {alivestatus/wgok} where we see that the final alive status would be thi irrespective whether gender of the person involved is male or female. Thus these intricacies were also dealt with
+
+ 8. Anuvaad Translate Model was run on all key values to ensure we could get the transliteration of values of the keys in Devanagari Script.

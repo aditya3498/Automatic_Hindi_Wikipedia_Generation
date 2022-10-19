@@ -10,10 +10,6 @@ with open('../Data/FinalData/FinalData_15000_Final/Cool/English_Translated_5.jso
 
 		English_Pairs_Translated = json.loads(line)
 
-#print(English_Pairs_Translated[str(511)])
-
-#print(dict(list(English_Pairs_Translated.items())[2162:2175]))
-
 for i in range(1501, 1721):
 
 	English_Pairs_10 = dict(itertools.islice(English_Pairs_Translated.items(), (i - 1500) * 10))
