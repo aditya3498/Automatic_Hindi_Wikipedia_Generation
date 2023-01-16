@@ -12,7 +12,7 @@ for i in range(1, 334):
 
 			map_data.append(json.loads(line))
 
-for i in range(570, 571):
+for i in range(416, 417):
 
 	with open('../Data/FinalData/FinalData_2500_6000/Cool' + str(i) + '.json', 'r') as fin:
 	

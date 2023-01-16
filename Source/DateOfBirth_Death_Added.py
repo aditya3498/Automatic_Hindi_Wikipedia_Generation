@@ -24,9 +24,9 @@ def month_to_text(month):
 
 	return switcher.get(month, "N/A")
 
-for i in range(1501, 1721):
+for i in range(419, 420):
 
-	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'r') as fin:
+	with open('../Data/FinalData/FinalData_2500_6000/Cool' + str(i) + '.json', 'r') as fin:
 
 		for line in fin:
 
@@ -42,7 +42,7 @@ for i in range(1501, 1721):
 
 				print(i)
 
-				dob = value[0]['time'][1:11].split('-')
+				dob = value['time'][1:11].split('-')
 
 				if int(dob[1]) == 0 and int(dob[2]) == 0:
 
@@ -68,7 +68,7 @@ for i in range(1501, 1721):
 
 			if k == 'मृत्यु तिथि':
 
-				dob = value[0]['time'][1:11].split('-')
+				dob = value['time'][1:11].split('-')
 
 				if int(dob[1]) == 0 and int(dob[2]) == 0:
 
@@ -92,6 +92,6 @@ for i in range(1501, 1721):
 
 					val['Hindi'].update({k : [dob_text_final]})
 
-	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'w') as fout:
+	with open('../Data/FinalData/FinalData_2500_6000/Cool' + str(i) + '.json', 'w') as fout:
 
 		json.dump(finaldata, fout)

@@ -26,7 +26,7 @@ template_sentences_single_pair = ['{{Scientist}} एक प्रसिद्ध
 	'उनके पिता का नाम {{पिता}} {alivestatus/wgok}',
 	'वह {{धर्म}} धरम {के/की} अनुयायी {alivestatus/wgop}',
 	'वह {{जातीय समूह}} जातीय समूह से सम्बंदित {alivestatus/wgop}',
-	'वह {{के छात्र}} {के/की} छात्र {alivestatus/wgop}',
+	'वह {{के छात्र }} {के/की} छात्र {alivestatus/wgop}',
 	'उनके कुछ उल्लेखनीय कार्य में {{उल्लेखनीय कार्य}} शामिल {alivestatus/wgok}',
 	'उनकी संतान {{संतान}} {alivestatus/wgok}',
 	'उनका कार्य स्थान {{कार्य स्थल}} {alivestatus/wgok}',
@@ -57,6 +57,7 @@ template_sentences_single_pair = ['{{Scientist}} एक प्रसिद्ध
 ]
 
 template_sentences_two_pairs = ['{{Scientist}} को {{इससे अलग}} से भ्रमित नहीं करना चाहिए',
+
 	'{{Scientist}} एक प्रसिद्ध {{व्यवसाय}} {alivestatus/wgop} जिनका जन्म {{जन्म तिथि}} को हुआ {alivestatus}',
 	'{{Scientist}} एक प्रसिद्ध {{व्यवसाय}} {alivestatus/wgop} जिनका जन्म {{जन्म स्थान}} देश में हुआ {alivestatus}',
 	'{{Scientist}} का जनम {{जन्म तिथि}} को {{जन्म स्थान}} में हुआ {alivestatus}',
@@ -81,10 +82,10 @@ template_sentences_two_pairs = ['{{Scientist}} को {{इससे अलग}}
 
 	'{{Scientist}} के डॉक्टरेट एडवाइजर् {{डॉक्टरेट सलाहकार}} {alivestatus/wgok} और वह स्वयं निम्नलिखित {{डॉक्टरेट छात्र}} {के/की} डॉक्टरेट एडवाइजर् {alivestatus/wgop}',
 	'{{Scientist}} के डॉक्टरेट एडवाइजर् {{डॉक्टरेट सलाहकार}} {alivestatus/wgok} और इसके अलावा, वह {{छात्र}} {के/की} शिक्षक भी {alivestatus/wgop}',
-	'{{Scientist}} स्वयं निम्नलिखित {{डॉक्टरेट छात्र}} {के/की} डॉक्टरेट एडवाइजर् {alivestatus/wgop}, और इसके अलावा, उनके शिक्षक {{के छात्र}} {alivestatus/wgok}',
+	'{{Scientist}} स्वयं निम्नलिखित {{डॉक्टरेट छात्र}} {के/की} डॉक्टरेट एडवाइजर् {alivestatus/wgop}, और इसके अलावा, उनके शिक्षक {{के छात्र }} {alivestatus/wgok}',
 	'{{Scientist}} स्वयं निम्नलिखित {{डॉक्टरेट छात्र}} {के/की} डॉक्टरेट एडवाइजर् {alivestatus/wgop}, और इसके अलावा, वह {{छात्र}} {के/की} शिक्षक भी {alivestatus/wgop}',
-	'{{Scientist}} के शिक्षक {{के छात्र}} {alivestatus/wgok} और वह {{छात्र}} {के/की} शिक्षक भी {alivestatus/wgop}',
-	'{{Scientist}} के डॉक्टरेट एडवाइजर् {{डॉक्टरेट सलाहकार}} {alivestatus/wgok} और उनके शिक्षक {{के छात्र}} {alivestatus/wgok}',
+	'{{Scientist}} के शिक्षक {{के छात्र }} {alivestatus/wgok} और वह {{छात्र}} {के/की} शिक्षक भी {alivestatus/wgop}',
+	'{{Scientist}} के डॉक्टरेट एडवाइजर् {{डॉक्टरेट सलाहकार}} {alivestatus/wgok} और उनके शिक्षक {{के छात्र }} {alivestatus/wgok}',
 
 	'{{Scientist}} {{का भाग}} का हिस्सा होने के साथ-साथ, {{का सदस्य}} का हिस्सा भी {alivestatus/wgop}',
 	'{{Scientist}} {{का भाग}} का हिस्सा होने के साथ-साथ, {{राजनीतिक दल के सदस्य}} राजनितिक दाल {के/की} सदस्य भी {alivestatus/wgop}',
@@ -109,7 +110,7 @@ template_sentences_two_pairs = ['{{Scientist}} को {{इससे अलग}}
 	'उनका उपनाम {{परिवार का नाम}} {alivestatus} और वह {{संबंधन}} समूह से {जुड़े/जुडी} {alivestatus/wgop}',
 	'वह {{परिवार}} परिवार का हिस्सा होने के साथ-साथ {{जातीय समूह}} जातीय समूह से भी सम्बंधित {alivestatus/wgop}',
 	'वह {{परिवार}} परिवार का हिस्सा होने के साथ-साथ {{संबंधन}} समूह से भी {जुड़े/जुडी} {alivestatus/wgop}',
-	'वह {{जातीय समूह}} जातीय समूह से सम्बंधित {{alive status}} और वे {{संबंधन}} से भी {जुड़े/जुडी} {alivestatus/wgop}',
+	'वह {{जातीय समूह}} जातीय समूह से सम्बंधित {alive status} और वे {{संबंधन}} से भी {जुड़े/जुडी} {alivestatus/wgop}',
 
 	'{{Scientist}} का कार्यस्थल {{कार्य स्थल}} {alivestatus}, और वह {{पद पर आसीन}} के रूप में भी कार्यरत {alivestatus/wgop}',
 	'{{Scientist}} का कार्यस्थल {{कार्य स्थल}} {alivestatus}, और वह {{नियोक्ता}} में भी कार्यरत {alivestatus/wgop}',
@@ -120,14 +121,14 @@ template_sentences_two_pairs = ['{{Scientist}} को {{इससे अलग}}
 
 template_sentences_three_pairs = ['{{Scientist}} एक प्रसिद्ध {{व्यवसाय}} {alivestatus/wgop} जिनका जन्म {{जन्म तिथि}} को {{जन्म स्थान}} देश में हुआ {alivestatus}',
 	'{{नागरिकता}} में पैदा {हुए/हुई} {{Scientist}} {{मातृसंस्था}} {के/की} पूर्व छात्र {alivestatus/wgop} और आगे चलके उन्होंने {{शैक्षिक दर्जा/उपाधि}} की डिग्री भी प्राप्त की',
-	'{{Scientist}} की मृत्यु {{मृत्यु तिथि}} को {{मृत्यु का स्थान}} देश में {{मृत्यु का कारण}} की वजह से हुई और उनके अंतिम विश्राम का स्थान {{अंतिम विश्राम का स्थान}} में था',
-	'{{Scientist}} के डॉक्टरेट एडवाइजर् {{डॉक्टरेट सलाहकार}} {alivestatus/wgok} और वह स्वयं निम्नलिखित {{डॉक्टरेट छात्र}} {के/की} डॉक्टरेट एडवाइजर् {alivestatus/wgop}; इसके अलावा, उनके शिक्षक {{के छात्र}} {alivestatus/wgok} और वह {{छात्र}} {के/की} शिक्षक भी {alivestatus/wgop}',
+	'{{Scientist}} के शिक्षक {{के छात्र }} {alivestatus/wgok} और वह {{छात्र}} {के/की} शिक्षक भी {alivestatus/wgop} और इसके आलावा उनके डॉक्टरेट एडवाइजर् {{डॉक्टरेट सलाहकार}} {alivestatus/wgok} और वह स्वयं {{डॉक्टरेट छात्र}} {के/की} डॉक्टरेट एडवाइजर् भी {alivestatus/wgop} |',
+	'{{Scientist}} के माता और पिता {{माता}} और {{पिता}} {alivestatus/wgok} और उनका सहोदर भी {alivestatus} जिनका नाम {{सहोदर}} {alivestatus} | उनके रिश्तेदारों में {{संबंधी}} भी शामिल {alivestatus/wgok}|',
+	'उनका उपनाम {{परिवार का नाम}} {alivestatus} और वह {{परिवार}} परिवार का हिस्सा होने के साथ-साथ {{जातीय समूह}} जातीय समूह के {alivestatus/wgok} और वह {{संबंधन}} से भी {जुड़े/जुडी} {alivestatus/wgop}',
 	'{{Scientist}} {{का भाग}} का हिस्सा होने के साथ-साथ {{का सदस्य}} का हिस्सा {alivestatus/wgop} और इसके अलावा वह {{राजनीतिक दल के सदस्य}} राजनितिक दाल {के/की} सदस्य भी {alivestatus/wgop}',
 	'{{Scientist}} {के/की} जीवन साथी {{जीवन साथी}} {alivestatus/wgop} और उनके {{बच्चों की संख्या}} बच्चे {alivestatus/wgok} जिनका नाम {{संतान}} {alivestatus}',
 	'{{Scientist}}, जिनकी निष्ठा {{निष्ठा}} के साथ {alivestatus/wgok}, वह {{सैन्य शाखा}} में {{सैनिक स्तर;}} {alivestatus/wgop} और उन्होंने {{संघर्ष में भाग लिया}} संघर्ष में भी भाग लिया {alivestatus}',
-	'{{Scientist}} के माता और पिता {{माता}} और {{पिता}} {alivestatus/wgok} और उनका सहोदर भी {alivestatus} जिनका नाम {{सहोदर}} {alivestatus} | उनके रिश्तेदारों में {{संबंधी}} भी शामिल {alivestatus/wgok}|',
-	'उनका उपनाम {{परिवार का नाम}} {alivestatus} और वह {{परिवार}} परिवार का हिस्सा होने के साथ-साथ {{जातीय समूह}} जातीय समूह के {alivestatus/wgok} और वह {{संबंधन}} से भी {जुड़े/जुडी} {alivestatus/wgop}',
 	'{{Scientist}} का कार्यस्थल {{कार्य स्थल}} {alivestatus}, और वह {{नियोक्ता}} में एक {{पद पर आसीन}} के रूप में भी कार्यरत {alivestatus/wgop}',
+	'{{Scientist}} की मृत्यु {{मृत्यु तिथि}} को {{मृत्यु का स्थान}} देश में {{मृत्यु का कारण}} की वजह से हुई और उनके अंतिम विश्राम का स्थान {{अंतिम विश्राम का स्थान}} में था',
 ]
 
 with open('../Data/TemplateSentences/Template_Sentences_Single_Pair_Sentence.json', 'w') as fout:

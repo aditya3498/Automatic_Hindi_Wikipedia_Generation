@@ -84,7 +84,7 @@ def get_data_from_name():
 
 		if string_input in sets.keys():
 
-			template_data = sets[string_input]['Hindi']
+			template_data = sets[string_input]
 
 			break
 
@@ -92,7 +92,7 @@ def get_data_from_name():
 
 		if string_input in sets.keys():
 
-			template_data = sets[string_input]['Hindi']
+			template_data = sets[string_input]
 
 			break
 
@@ -100,7 +100,7 @@ def get_data_from_name():
 
 		if string_input in sets.keys():
 
-			template_data = sets[string_input]['Hindi']
+			template_data = sets[string_input]
 
 			break
 
@@ -108,7 +108,7 @@ def get_data_from_name():
 
 		if string_input in sets.keys():
 
-			template_data = sets[string_input]['Hindi']
+			template_data = sets[string_input]
 
 			break
 
@@ -116,7 +116,7 @@ def get_data_from_name():
 
 		if string_input in sets.keys():
 
-			template_data = sets[string_input]['Hindi']
+			template_data = sets[string_input]
 
 			break
 
@@ -124,19 +124,11 @@ def get_data_from_name():
 
 		if string_input in sets.keys():
 
-			template_data = sets[string_input]['Hindi']
+			template_data = sets[string_input]
 
 			break	
 
 	return template_data
-
-def template_creation_single_third():
-
-	return 0
-
-def template_creation_double_second():
-
-	return 0
 
 def template_creation_triple_first():
 
@@ -144,7 +136,9 @@ def template_creation_triple_first():
 
 	template_data = get_data_from_name()
 
-	triple_pair_dict, triple_pair_dict_sentence_regex = {}, {}
+	triple_pair_dict, double_pair_dict, single_pair_dict, triple_pair_dict_sentence_regex, double_pair_dict_sentence_regex, single_pair_dict_sentence_regex = {}, {}, {}, {}, {}, {}
+
+	template_sentence = ""
 
 	count = 1
 
@@ -152,17 +146,111 @@ def template_creation_triple_first():
 
 		keys = re.findall(r'\{\{(.*?)\}\}', sentence)
 
-		triple_pair_dict[count] = sentence
+		triple_pair_dict["3_Key" + '_' + str(count)] = sentence
 
-		triple_pair_dict_sentence_regex[count] = keys
+		triple_pair_dict_sentence_regex["3_Key" + '_' + str(count)] = keys
 
 		count += 1
 
-	print(triple_pair_dict)
+	count = 1
+
+	for sentence in double_pair:
+
+		keys = re.findall(r'\{\{(.*?)\}\}', sentence)
+
+		double_pair_dict[count] = sentence
+
+		double_pair_dict_sentence_regex[count] = keys
+
+		count += 1
+
+	count = 1
+
+	for sentence in single_pair:
+
+		keys = re.findall(r'\{\{(.*?)\}\}', sentence)
+
+		single_pair_dict[count] = sentence
+
+		single_pair_dict_sentence_regex[count] = keys
+
+		count += 1
+
+	for key, val in list(triple_pair_dict_sentence_regex.items())[:10]:
+
+		if key != "3_Key_5":
+
+			count = 1
+
+			for i in range(1, len(val)):
+
+				for j in range(i + 1, len(val)):
+
+					if key == "3_Key_2":
+
+						val.insert(0, val.pop(val.index("Scientist")))
+
+					list_temp = [val[0], val[i], val[j]]
+
+					for keys, values in list(double_pair_dict_sentence_regex.items()):
+
+						if key == "3_Key_2" and "Scientist" in list_temp:
+	 
+							list_temp.remove("Scientist")
+
+						if set(list_temp) == set(values):
+
+							double_pair_dict_sentence_regex[key + '_2_Key_' + str(count)] = double_pair_dict_sentence_regex.pop(keys)
+
+							count += 1
+
+							break
+
+	for key, val in list(triple_pair_dict_sentence_regex.items())[4:5]:
+
+		count = 1
+
+		for i in range(0, len(val)):
+
+			for j in range(i + 1, len(val)):
+
+				list_temp = [val[i], val[j]]
+
+				for keys, values in list(double_pair_dict_sentence_regex.items()):
+
+					if set(list_temp) == set(values):
+
+						double_pair_dict_sentence_regex[key + '_2_Key_' + str(count)] = double_pair_dict_sentence_regex.pop(keys)
+
+						count += 1
+
+						break
+
+	for key, val in list(double_pair_dict.items()):
+
+		keys = re.findall(r'\{\{(.*?)\}\}', val)
+
+		for k, values in double_pair_dict_sentence_regex.items():
+
+			if keys == values:
+
+				double_pair_dict[k] = double_pair_dict.pop(key)
 
 	print(triple_pair_dict_sentence_regex)
 
-	print(template_data)
+	print("\n")
+
+	print(triple_pair_dict)
+
+	print("\n")
+
+	print(double_pair_dict)
+
+	print("\n")
+
+	print(double_pair_dict_sentence_regex)
+
+	print("\n")
 
 	list_keys_scientist = [key for key in template_data]
 
@@ -171,6 +259,8 @@ def template_creation_triple_first():
 		temp_scientist_list = []
 
 		list_check = [x for x in val if x not in list_keys_scientist]
+
+		#print(list_check)
 
 		if not list_check:
 
@@ -184,8 +274,90 @@ def template_creation_triple_first():
 
 					temp_scientist_list.append(template_data[val[i]])
 
-		print(temp_scientist_list)
+			for i in range(0, len(temp_scientist_list)):
 
-		print(key, val)
+				if isinstance(temp_scientist_list[i], list):
+
+					string_convert = ', '.join(temp_scientist_list[i][:-1]) + ' और ' + temp_scientist_list[i][-1]
+
+					temp_scientist_list[i] = string_convert
+
+			template_sentence = triple_pair_dict[key]
+
+			print("triple")
+
+			print(template_sentence)
+
+			print("\n")
+
+			print(temp_scientist_list)
+
+			print("\n")
+
+			'''for i in range(0, len(val)):
+
+				template_sentence = re.sub(r'\{\{(.*?)\}\}', temp_scientist_list[i], template_sentence, count = 1)
+
+			print(template_sentence)
+
+			print("\n")'''
+
+		else:
+
+			list_after_triple_check = [x for x in val if x in list_keys_scientist]
+
+			print(list_after_triple_check)
+
+			if len(list_after_triple_check) == len(val) - 1:
+
+				#print("X")
+
+				for i in range(0, len(list_after_triple_check)):
+
+					if len(template_data[list_after_triple_check[i]]) <= 1:
+
+						temp_scientist_list.append(template_data[list_after_triple_check[i]][0])
+
+					else:
+
+						temp_scientist_list.append(template_data[list_after_triple_check[i]])
+
+				for i in range(0, len(temp_scientist_list)):
+
+					if isinstance(temp_scientist_list[i], list):
+
+						string_convert = ', '.join(temp_scientist_list[i][:-1]) + ' और ' + temp_scientist_list[i][-1]
+
+						temp_scientist_list[i] = string_convert
+
+				if key == "3_Key_2":
+
+					list_after_triple_check.remove('Scientist')
+
+					temp_scientist_list.pop(0)
+
+				for k, v in double_pair_dict_sentence_regex.items():
+
+					if v == list_after_triple_check:
+
+						print("YOOOO")
+
+						template_sentence = double_pair_dict[k]
+
+						break
+
+				print("double")
+
+				print(template_sentence)
+
+				print("\n")
+
+				print(temp_scientist_list)
+
+				print("\n")
+
+			else:
+
+				pass					
 
 template_creation_triple_first()

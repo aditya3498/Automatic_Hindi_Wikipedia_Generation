@@ -8,11 +8,11 @@ from anuvaad import Anuvaad
 
 anu = Anuvaad('english-hindi')
 
-for i in range(1, 250):
+for i in range(416, 601):
 
 	finaldata = {}
 
-	with open('RA_OUTPUTS/FinalData/FinalData_1_2500/Cool' + str(i) + '.json', 'r') as fin:
+	with open('RA_OUTPUTS/FinalData/FinalData_2500_6000/Cool' + str(i) + '.json', 'r') as fin:
 
 		for line in fin:
 
@@ -102,41 +102,53 @@ for i in range(1, 250):
 
 						else:
 
-							if ad.only_alphabet_chars(str(value[j]), "LATIN"):
+							try:
 
-								text = anu.anuvaad(str(value[j]))
+								if ad.only_alphabet_chars(str(value[j]), "LATIN"):
 
-								value[j] = text
+									text = anu.anuvaad(value[j])
+
+									value[j] = text
+
+							except:
+
+								print(key, value)
 
 				else:
 
-					if isinstance(value[0], dict):
+					try:
 
-						temp_dict = {}
+						if isinstance(value[0], dict):
 
-						for k, v in value[0].items():
+							temp_dict = {}
 
-							if ad.only_alphabet_chars(str(k), "LATIN"):
+							for k, v in value[0].items():
 
-								text = anu.anuvaad(k)
+								if ad.only_alphabet_chars(str(k), "LATIN"):
 
-								k = text
+									text = anu.anuvaad(k)
 
-							text_value = anu.anuvaad(v)
+									k = text
 
-							v = text_value
+								text_value = anu.anuvaad(v)
 
-							temp_dict[k] = v
+								v = text_value
 
-						value[0] = temp_dict
+								temp_dict[k] = v
 
-					else:
+							value[0] = temp_dict
 
-						if ad.only_alphabet_chars(str(value[0]), "LATIN"):
+						else:
 
-							text = anu.anuvaad(value[0])
+							if ad.only_alphabet_chars(str(value[0]), "LATIN"):
 
-							value[0] = text
+								text = anu.anuvaad(value[0])
+
+								value[0] = text
+
+					except:
+
+						print(key, value)	
 
 	for val in data.values():
 
@@ -158,6 +170,6 @@ for i in range(1, 250):
 
 	print("\n")
 
-	with open('RA_OUTPUTS/FinalData/FinalData_1_2500/Cool_Temp' + str(i) + '.json', 'w') as fout:
+	with open('RA_OUTPUTS/FinalData/FinalData_2500_6000/Cool' + str(i) + '.json', 'w') as fout:
 
 		json.dump(finaldata, fout)
