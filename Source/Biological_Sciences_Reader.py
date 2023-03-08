@@ -202,7 +202,7 @@ for item in final_list[5358:5359]:
 
 	print(label_person_list)
 
-	'''if count % 10 == 0:
+	if count % 10 == 0:
 	
 		partition_num = str(count / 10).split('.')[0]
 
@@ -214,9 +214,9 @@ for item in final_list[5358:5359]:
 
 		print("Checkpoint %d reached \n" % (count / 10), end = ' ')
 
-	#all_english.append(non_labelled)'''
+	#all_english.append(non_labelled)
 
-'''for i in range(1501, 1721):
+for i in range(1501, 1721):
 
 	with open('RA_OUTPUTS/15000_Finalperson/hindi_keyvalue_pairs' + str(i) + '.json', 'r') as fin:
 
@@ -296,4 +296,4 @@ for val in final_english_tobetrans.values():
 
 	result = pd.concat([x, y], axis=1)
 
-result.to_excel('output_15000.xlsx')'''
+result.to_excel('output_15000.xlsx')
