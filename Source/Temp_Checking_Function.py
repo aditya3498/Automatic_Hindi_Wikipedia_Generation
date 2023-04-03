@@ -62,22 +62,20 @@ for item in template_data:
 
 count, flag = 0, False
 
-for item in template_data[:10]:
+for item in template_data[:100]:
 
 	count += 1
 
-	print(item)
+	#print(item)
 
 	for key, val in item.items():
 
-		if 'Reason' in val.keys():
+		if 'बच्चों की संख्या' in val.keys():
 
-			if len(val['Reason']) > 1:
+			#if len(val['Reason']) == 0 and 'नामांकित किया गया' in val.keys():
 
-				flag = True
+			flag = True
 
-				print(count)
+			print(count)
 
-				print(key, val)
-
-				break
+			print(key, val)

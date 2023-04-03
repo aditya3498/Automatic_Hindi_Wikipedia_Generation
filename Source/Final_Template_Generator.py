@@ -260,6 +260,50 @@ def template_creation_triple_first():
 
 				double_pair_dict[k] = double_pair_dict.pop(key)
 
+	for key, val in list(triple_pair_dict_sentence_regex.items()):
+
+		list_temp = []
+
+		count = 1
+
+		for i in range(len(val)):
+
+			list_temp.append(val[i])
+
+		if 'Scientist' in val:
+
+			list_temp.remove('Scientist')
+
+		for i in range(len(list_temp)):
+
+			for k, v in single_pair_dict_sentence_regex.items():
+
+				if list_temp[i] == v[0]:
+
+					single_pair_dict_sentence_regex[key + '_1_Key_' + str(count)] = single_pair_dict_sentence_regex.pop(k)
+
+					count += 1
+
+					break
+
+	for key, val in list(single_pair_dict.items()):
+
+		keys = re.findall(r'\{\{(.*?)\}\}', val)
+
+		for k, v in single_pair_dict_sentence_regex.items():
+
+			if keys == v:
+
+				single_pair_dict[k] = single_pair_dict.pop(key)
+
+	print(single_pair_dict_sentence_regex)
+
+	print("\n")
+
+	print(single_pair_dict)
+
+	print("\n")
+
 	print(triple_pair_dict_sentence_regex)
 
 	print("\n")
@@ -282,13 +326,27 @@ def template_creation_triple_first():
 
 		template_data['Reason'] = {}
 
+		template_data['Reason_Award'] = {}
+
 		for item in template_data['पुरस्कार प्राप्त']:
 
 			if isinstance(item, dict):
 
 				for k, v in item.items():
 
-					template_data['Reason'][k] = v
+					template_data['Reason'][k] = '"' + str(v) + '"'
+
+					template_data['Reason_Award'][k] = '"' + str(v) + '"'
+
+	if 'Reason' in template_data.keys():
+
+		for k, v in template_data['Reason'].items():
+
+			updating = v.replace(v[-2], '')
+
+			template_data['Reason'].update({k : updating})
+
+			template_data['Reason_Award'].update({k : updating})
 
 	if 'Reason' in template_data.keys():
 
@@ -330,17 +388,19 @@ def template_creation_triple_first():
 
 	for key, val in triple_pair_dict_sentence_regex.items():
 
-		temp_scientist_list = []
+		temp_scientist_list, single_bracket_list = [], []
 
 		list_check = [x for x in val if x not in list_keys_scientist]
 
-		if key == "3_Key_4":
+		if key == "3_Key_5":
 
 			continue
 
 		print(key, val)
 
 		if not list_check:
+
+			count_temp = 0
 
 			template_data_remaining_keys = list(set(template_data_remaining_keys) - set(val))
 
@@ -368,8 +428,6 @@ def template_creation_triple_first():
 
 			print("\ntriple\n")
 
-			#print("Template Sentence : ", template_sentence)
-
 			print(temp_scientist_list)
 
 			print("\n")
@@ -377,6 +435,24 @@ def template_creation_triple_first():
 			for i in range(0, len(val)):
 
 				template_sentence = re.sub(r'\{\{(.*?)\}\}', temp_scientist_list[i], template_sentence, count = 1)
+
+			x = re.findall(r'\{(.*?)\}', template_sentence)
+
+			for i in x:
+
+				if len(template_data[i]) > 1:
+
+					y = '/'.join(template_data[i])
+
+					single_bracket_list.append('({})'.format(y))
+
+				else:
+
+					single_bracket_list.append(template_data[i][0])
+
+			for i in range(len(x)):
+
+				template_sentence = re.sub(r'\{(.*?)\}', single_bracket_list[i], template_sentence, count = 1)
 
 			template += str(" ") + template_sentence
 
@@ -392,7 +468,7 @@ def template_creation_triple_first():
 
 			list_after_triple_check = [x for x in val if x in list_keys_scientist]
 
-			if len(list_after_triple_check) == len(val) - 1:
+			if len(list_after_triple_check) == len(val) - 1 or len(list_after_triple_check) > 2:
 
 				template_data_remaining_keys = list(set(template_data_remaining_keys) - set(val))
 
@@ -422,26 +498,6 @@ def template_creation_triple_first():
 
 					temp_scientist_list.pop(0)
 
-				list_temp = []
-
-				'''if len(list_after_triple_check) == 4:
-
-					for i in range(1, 4):
-
-						for j in range(i + 1, 4):
-
-							list_temp = [list_after_triple_check[0], list_after_triple_check[i], list_after_triple_check[j]]
-
-							for k, v in double_pair_dict_sentence_regex.items():
-
-								if list_temp == v:
-
-									print("SRSLY")
-
-									template_sentence = double_pair_dict[k]
-
-									break'''
-
 				for k, v in double_pair_dict_sentence_regex.items():
 
 					if v == list_after_triple_check:
@@ -461,6 +517,24 @@ def template_creation_triple_first():
 				for i in range(len(list_after_triple_check)):
 
 					template_sentence = re.sub(r'\{\{(.*?)\}\}', temp_scientist_list[i], template_sentence, count = 1)
+
+				x = re.findall(r'\{(.*?)\}', template_sentence)
+
+				for i in x:
+
+					if len(template_data[i]) > 1:
+
+						y = '/'.join(template_data[i])
+
+						single_bracket_list.append('({})'.format(y))
+
+					else:
+
+						single_bracket_list.append(template_data[i][0])
+
+				for i in range(len(x)):
+
+					template_sentence = re.sub(r'\{(.*?)\}', single_bracket_list[i], template_sentence, count = 1)
 
 				template += str(" ") + template_sentence
 
@@ -504,23 +578,59 @@ def template_creation_triple_first():
 
 						temp_scientist_list[i] = string_convert
 
+				for k, v in single_pair_dict_sentence_regex.items():
+
+					if v == list_after_triple_check:
+
+						print(k, v)
+
+						template_sentence = single_pair_dict[k]
+
+						break
+
 				print(temp_scientist_list)
 
 				print(list_after_triple_check)
 
 				print("SINGLE")
 
+				for i in range(len(list_after_triple_check)):
+
+					template_sentence = re.sub(r'\{\{(.*?)\}\}', temp_scientist_list[i], template_sentence, count = 1)
+
+				x = re.findall(r'\{(.*?)\}', template_sentence)
+
+				for i in x:
+
+					if len(template_data[i]) > 1:
+
+						y = '/'.join(template_data[i])
+
+						single_bracket_list.append('({})'.format(y))
+
+					else:
+
+						single_bracket_list.append(template_data[i][0])
+
+				for i in range(len(x)):
+
+					template_sentence = re.sub(r'\{(.*?)\}', single_bracket_list[i], template_sentence, count = 1)
+
+				template += str(" ") + template_sentence
+
+				print(template_sentence)
+
 				print("\n")
 
-	#print(list_temp)
+				print(template)
 
-	#print(temp_scientist_list)
+				print("\n")
 
 	for key, val in triple_pair_dict_sentence_regex.items():
 
 		temp_scientist_list = []
 
-		if key == "3_Key_4":
+		if key == "3_Key_5":
 
 			reason, prize = [], []
 
@@ -528,7 +638,7 @@ def template_creation_triple_first():
 
 			list_check = [x for x in val if x not in list_keys_scientist]
 
-			if not list_check:
+			if not list_check and len(template_data['Reason']) != 0:
 
 				template_data_remaining_keys = list(set(template_data_remaining_keys) - set(val))
 
@@ -536,7 +646,7 @@ def template_creation_triple_first():
 
 					reason_insert = template_data['Reason'][list(template_data['Reason'].keys())[0]]
 
-					prize_insert = list(template_data['Reason'].keys())[0]
+					prize_insert = list(template_data['Reason_Award'].keys())[0]
 
 					template_data['पुरस्कार प्राप्त'].remove(prize_insert)
 
@@ -548,7 +658,15 @@ def template_creation_triple_first():
 
 						string_convert = template_data['पुरस्कार प्राप्त'][0]
 
-					temp_scientist_list = [template_data['Scientist'][0], reason_insert, prize_insert, string_convert]
+					if len(template_data['नामांकित किया गया']) > 1:
+
+						string_last = ', '.join(template_data['नामांकित किया गया'][:-1]) + ' और ' + template_data['नामांकित किया गया'][-1]
+
+					else:
+
+						string_last = template_data['पुरस्कार प्राप्त'][0]
+
+					temp_scientist_list = [template_data['Scientist'][0], reason_insert, prize_insert, string_convert, string_last]
 					
 					print(temp_scientist_list)
 
@@ -588,11 +706,19 @@ def template_creation_triple_first():
 
 						string_convert = template_data['पुरस्कार प्राप्त'][0]
 
+					if len(template_data['नामांकित किया गया']) > 1:
+
+						string_last = ', '.join(template_data['नामांकित किया गया'][:-1]) + ' और ' + template_data['नामांकित किया गया'][-1]
+
+					else:
+
+						string_last = template_data['पुरस्कार प्राप्त'][0]
+
 					reason_insert = ', '.join(reason[:-1]) + ' एवं ' + reason[-1]
 
 					prize_insert = ', '.join(prize[:-1]) + ' एवं ' + prize[-1]
 
-					temp_scientist_list = [template_data['Scientist'][0], reason_insert, prize_insert, string_convert]
+					temp_scientist_list = [template_data['Scientist'][0], reason_insert, prize_insert, string_convert, string_last]
 
 					print(temp_scientist_list)
 
@@ -618,114 +744,162 @@ def template_creation_triple_first():
 
 				list_after_check = [x for x in val if x in list_keys_scientist]
 
+				if len(template_data['Reason']) == 0:
+
+					list_after_check.remove('Reason')
+
+					list_after_check.remove('Reason_Award')
+
+				print(list_after_check)
+
 				if len(list_after_check) == len(val) - 1:
 
 					template_data_remaining_keys = list(set(template_data_remaining_keys) - set(val))
 
-					if 'Reason' in list_after_check:
+					if len(template_data['Reason']) <= 1:
 
-						if len(template_data['Reason']) <= 1:
+						reason_insert = template_data['Reason'][list(template_data['Reason'].keys())[0]]
 
-							reason_insert = template_data['Reason'][list(template_data['Reason'].keys())[0]]
+						prize_insert = list(template_data['Reason'].keys())[0]
 
-							prize_insert = list(template_data['Reason'].keys())[0]
+						template_data['पुरस्कार प्राप्त'].remove(prize_insert)
 
-							template_data['पुरस्कार प्राप्त'].remove(prize_insert)
+						if len(template_data['पुरस्कार प्राप्त']) > 1:
 
-							if len(template_data['पुरस्कार प्राप्त']) > 1:
-
-								string_convert = ', '.join(template_data['पुरस्कार प्राप्त'][:-1]) + ' और ' + template_data['पुरस्कार प्राप्त'][-1]
-
-							else:
-
-								string_convert = template_data['पुरस्कार प्राप्त'][0]
-
-							temp_scientist_list = [template_data['Scientist'][0], reason_insert, prize_insert, string_convert]
-					
-							print(temp_scientist_list)
-
-							print("\n")
-
-							for k, v in double_pair_dict_sentence_regex.items():
-
-								if v == list_after_check:
-
-									template_sentence = double_pair_dict[k]
-
-									break
-
-							for i in range(len(temp_scientist_list)):
-
-								template_sentence = re.sub(r'\{\{(.*?)\}\}', temp_scientist_list[i], template_sentence, count = 1)
-
-							template += str(" ") + template_sentence
-
-							print("Template Sentence Reason:", template_sentence)
-
-							print("\n")
-
-							print("Final Template :", template)
-
-							print("\n")
+							string_convert = ', '.join(template_data['पुरस्कार प्राप्त'][:-1]) + ' और ' + template_data['पुरस्कार प्राप्त'][-1]
 
 						else:
 
-							for k, v in template_data['Reason'].items():
+							string_convert = template_data['पुरस्कार प्राप्त'][0]
 
-								reason.append(v)
+						temp_scientist_list = [template_data['Scientist'][0], reason_insert, prize_insert, string_convert]
+				
+						print(temp_scientist_list)
 
-								prize.append(k)
+						print("\n")
 
-								template_data['पुरस्कार प्राप्त'].remove(k)
+						for k, v in double_pair_dict_sentence_regex.items():
 
-							if len(template_data['पुरस्कार प्राप्त']) > 1:
+							if v == list_after_check:
 
-								string_convert = ', '.join(template_data['पुरस्कार प्राप्त'][:-1]) + ' और ' + template_data['पुरस्कार प्राप्त'][-1]
+								template_sentence = double_pair_dict[k]
 
-							else:
+								break
 
-								string_convert = template_data['पुरस्कार प्राप्त'][0]
+						for i in range(len(temp_scientist_list)):
 
-							reason_insert = ', '.join(reason[:-1]) + ' एवं ' + reason[-1]
+							template_sentence = re.sub(r'\{\{(.*?)\}\}', temp_scientist_list[i], template_sentence, count = 1)
 
-							prize_insert = ', '.join(prize[:-1]) + ' एवं ' + prize[-1]
+						template += str(" ") + template_sentence
 
-							temp_scientist_list = [template_data['Scientist'][0], reason_insert, prize_insert, string_convert]
+						print("Template Sentence Reason:", template_sentence)
 
-							print(temp_scientist_list)
+						print("\n")
 
-							print("\n")
+						print("Final Template :", template)
 
-							for k, v in double_pair_dict_sentence_regex.items():
+						print("\n")
 
-								if v == list_after_check:
+					else:
 
-									template_sentence = double_pair_dict[k]
+						for k, v in template_data['Reason'].items():
 
-									break
+							reason.append(v)
 
-							for i in range(len(temp_scientist_list)):
+							prize.append(k)
 
-								template_sentence = re.sub(r'\{\{(.*?)\}\}', temp_scientist_list[i], template_sentence, count = 1)
+							template_data['पुरस्कार प्राप्त'].remove(k)
 
-							template += str(" ") + template_sentence
+						if len(template_data['पुरस्कार प्राप्त']) > 1:
 
-							print("Template Sentence REASON:", template_sentence)
+							string_convert = ', '.join(template_data['पुरस्कार प्राप्त'][:-1]) + ' और ' + template_data['पुरस्कार प्राप्त'][-1]
 
-							print("\n")
+						else:
 
-							print("Final Template :", template)
+							string_convert = template_data['पुरस्कार प्राप्त'][0]
+
+						reason_insert = ', '.join(reason[:-1]) + ' एवं ' + reason[-1]
+
+						prize_insert = ', '.join(prize[:-1]) + ' एवं ' + prize[-1]
+
+						temp_scientist_list = [template_data['Scientist'][0], reason_insert, prize_insert, string_convert]
+
+						print(temp_scientist_list)
+
+						print("\n")
+
+						for k, v in double_pair_dict_sentence_regex.items():
+
+							if v == list_after_check:
+
+								template_sentence = double_pair_dict[k]
+
+								break
+
+						for i in range(len(temp_scientist_list)):
+
+							template_sentence = re.sub(r'\{\{(.*?)\}\}', temp_scientist_list[i], template_sentence, count = 1)
+
+						template += str(" ") + template_sentence
+
+						print("Template Sentence REASON:", template_sentence)
+
+						print("\n")
+
+						print("Final Template :", template)
+
+				else:
+
+					template_data_remaining_keys = list(set(template_data_remaining_keys) - set(val))
+
+					for i in range(len(list_after_check)):
+
+						if len(template_data[list_after_check[i]]) <= 1:
+
+							temp_scientist_list.append(template_data[list_after_check[i]][0])
+
+						else:
+
+							temp_scientist_list.append(template_data[list_after_check[i]])
+
+					for i in range(0, len(temp_scientist_list)):
+
+						if isinstance(temp_scientist_list[i], list):
+
+							string_convert = ', '.join(temp_scientist_list[i][:-1]) + ' और ' + temp_scientist_list[i][-1]
+
+							temp_scientist_list[i] = string_convert
+
+					for k, v in double_pair_dict_sentence_regex.items():
+
+						if v == list_after_check:
+
+							print(k)
+
+							print("YOOOO")
+
+							template_sentence = double_pair_dict[k]
+
+							break
+
+					print("\ndouble\n")
+
+					for i in range(len(list_after_triple_check)):
+
+						template_sentence = re.sub(r'\{\{(.*?)\}\}', temp_scientist_list[i], template_sentence, count = 1)
+
+					template += str(" ") + template_sentence
+
+					print(template_sentence)
+
+					print("\n")
+
+					print(template)
 
 	print("\n")
 
-	print(template_data_remaining_keys)	
+	for i in template_data_remaining_keys:
 
-	print("\n")	
-
-	print(single_pair_dict_sentence_regex)
-
-	print("\n")
-
-	print(single_pair_dict)			
+		print(i)	
 
 template_creation_triple_first()

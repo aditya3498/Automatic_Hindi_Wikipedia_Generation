@@ -1,10 +1,10 @@
 import json
 
-for i in range(1501, 1721):
+for i in range(1, 250):
 
 	keys_delete = []
 
-	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'r') as fin:
+	with open('../Data/FinalData/FinalData_1_2500/Cool' + str(i) + '.json', 'r') as fin:
 
 		for line in fin:
 
@@ -14,65 +14,65 @@ for i in range(1501, 1721):
 
 		try:
 
-			dob = val['Hindi']['मृत्यु तिथि']
+			dob = val['मृत्यु तिथि']
 
-			val['Hindi']['alivestatus/wgok'] = ['थी', 'था']
+			val['alivestatus/wgok'] = ['थे', 'थी']
 
-			val['Hindi']['alivestatus'] = ['था']
+			val['alivestatus'] = ['था']
 
-			if val['Hindi']['लिंग'][0] == 'महिला':
+			if val['लिंग'][0] == 'महिला':
 
-				val['Hindi']['alivestatus/wgop'] = ['थी']
+				val['alivestatus/wgop'] = ['थी']
 
-				val['Hindi']['हुए/हुई'] = ['हुई']
+				val['हुए/हुई'] = ['हुई']
 
-				val['Hindi']['के/की'] = ['की']
+				val['के/की'] = ['की']
 
-				val['Hindi']['रखती/रखते'] = ['रखती']
+				val['रखती/रखते'] = ['रखती']
 
-				val['Hindi']['जुड़े/जुडी'] = ['जुडी']
+				val['जुड़े/जुडी'] = ['जुडी']
 
 			else:
 
-				val['Hindi']['alivestatus/wgop'] = ['थे']
+				val['alivestatus/wgop'] = ['थे']
 
-				val['Hindi']['के/की'] = ['के']
+				val['के/की'] = ['के']
 
-				val['Hindi']['हुए/हुई'] = ['हुए']
+				val['हुए/हुई'] = ['हुए']
 
-				val['Hindi']['रखती/रखते'] = ['रखते']
+				val['रखती/रखते'] = ['रखते']
 
-				val['Hindi']['जुड़े/जुडी'] = ['जुड़े']
+				val['जुड़े/जुडी'] = ['जुड़े']
 
 		except:
 
-			val['Hindi']['alivestatus'] = ['है']
+			val['alivestatus'] = ['है']
 
-			val['Hindi']['alivestatus/wgok'] = ['है']
+			val['alivestatus/wgok'] = ['है']
 
-			val['Hindi']['alivestatus/wgop'] = ['है']
+			val['alivestatus/wgop'] = ['है']
 
 			try:
 
-				if val['Hindi']['लिंग'][0] == 'महिला':
+				if val['लिंग'][0] == 'महिला':
 
-					val['Hindi']['हुए/हुई'] = ['हुई']
+					val['हुए/हुई'] = ['हुई']
 
-					val['Hindi']['रखती/रखते'] = ['रखती']
+					val['रखती/रखते'] = ['रखती']
 
-					val['Hindi']['के/की'] = ['की']
+					val['के/की'] = ['की']
 
-					val['Hindi']['जुड़े/जुडी'] = ['जुडी']
+					val['जुड़े/जुडी'] = ['जुडी']
 
 				else:
 
-					val['Hindi']['हुए/हुई'] = ['हुए']
+					val['हुए/हुई'] = ['हुए']
 
-					val['Hindi']['रखती/रखते'] = ['रखते']
+					val['रखती/रखते'] = ['रखते']
 
-					val['Hindi']['के/की'] = ['के']
+					val['के/की'] = ['के']
 
-					val['Hindi']['जुड़े/जुडी'] = ['जुड़े']
+					val['जुड़े/जुडी'] = ['जुड़े']
 
 			except:
 
@@ -82,6 +82,6 @@ for i in range(1501, 1721):
 
 		del alive_status_added[key]
 
-	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'w') as fout:
+	with open('../Data/FinalData/FinalData_1_2500/Cool' + str(i) + '.json', 'w') as fout:
 
 		json.dump(alive_status_added, fout)
