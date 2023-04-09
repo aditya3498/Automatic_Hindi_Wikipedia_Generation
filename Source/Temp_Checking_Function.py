@@ -62,7 +62,7 @@ for item in template_data:
 
 count, flag = 0, False
 
-for item in template_data[:100]:
+for item in template_data[:20]:
 
 	count += 1
 

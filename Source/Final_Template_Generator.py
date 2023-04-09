@@ -322,6 +322,12 @@ def template_creation_triple_first():
 
 	temp_to_remove = []
 
+	if 'बच्चों की संख्या' in template_data.keys():
+
+		if len(template_data['बच्चों की संख्या']) > 1:
+
+			template_data['बच्चे/बच्चा']
+
 	if 'पुरस्कार प्राप्त' in template_data.keys():
 
 		template_data['Reason'] = {}
@@ -400,8 +406,6 @@ def template_creation_triple_first():
 
 		if not list_check:
 
-			count_temp = 0
-
 			template_data_remaining_keys = list(set(template_data_remaining_keys) - set(val))
 
 			for i in range(0, len(val)):
@@ -411,6 +415,8 @@ def template_creation_triple_first():
 					temp_scientist_list.append(template_data[val[i]][0])
 
 				else:
+
+					template_data[val[i]] = list(set(template_data[val[i]]))
 
 					temp_scientist_list.append(template_data[val[i]])
 
@@ -436,6 +442,12 @@ def template_creation_triple_first():
 
 				template_sentence = re.sub(r'\{\{(.*?)\}\}', temp_scientist_list[i], template_sentence, count = 1)
 
+			if key == "3_Key_9":
+
+				if template_data[val[2]] >= 1:
+
+					temp_find = re.findall(r'\{बच्चे/बच्चा\}', tem)
+
 			x = re.findall(r'\{(.*?)\}', template_sentence)
 
 			for i in x:
@@ -456,13 +468,13 @@ def template_creation_triple_first():
 
 			template += str(" ") + template_sentence
 
+			template_data_remaining_keys = list(set(template_data_remaining_keys) - set(x))
+
 			print("Template Sentence:", template_sentence)
 
 			print("\n")
 
 			print("Final Template Combined:", template)
-
-			print("\n")
 
 		else:
 
@@ -538,13 +550,13 @@ def template_creation_triple_first():
 
 				template += str(" ") + template_sentence
 
+				template_data_remaining_keys = list(set(template_data_remaining_keys) - set(x))
+
 				print(template_sentence)
 
 				print("\n")
 
 				print(template)
-
-				print("\n")
 
 			else:
 
@@ -618,19 +630,19 @@ def template_creation_triple_first():
 
 				template += str(" ") + template_sentence
 
+				template_data_remaining_keys = list(set(template_data_remaining_keys) - set(x))
+
 				print(template_sentence)
 
 				print("\n")
 
 				print(template)
 
-				print("\n")
-
 	for key, val in triple_pair_dict_sentence_regex.items():
 
 		temp_scientist_list = []
 
-		if key == "3_Key_5":
+		if key == "3_Key_5" and 'पुरस्कार प्राप्त' in template_data.keys():
 
 			reason, prize = [], []
 
@@ -752,7 +764,7 @@ def template_creation_triple_first():
 
 				print(list_after_check)
 
-				if len(list_after_check) == len(val) - 1:
+				if len(list_after_check) == len(val) - 1 or len(list_after_check) == 3:
 
 					template_data_remaining_keys = list(set(template_data_remaining_keys) - set(val))
 
@@ -852,6 +864,16 @@ def template_creation_triple_first():
 
 					template_data_remaining_keys = list(set(template_data_remaining_keys) - set(val))
 
+					if 'Scientist' in list_after_check:
+
+						list_after_check.remove('Scientist')
+
+					if len(list_after_check) == 0:
+
+						print("KEYS NOT AVAILABLE FOR PRESENT SCIENTIST\n")
+
+						continue
+
 					for i in range(len(list_after_check)):
 
 						if len(template_data[list_after_check[i]]) <= 1:
@@ -860,7 +882,7 @@ def template_creation_triple_first():
 
 						else:
 
-							temp_scientist_list.append(template_data[list_after_check[i]])
+							temp_scientist_list.append(template_data[list_after_check[i]])					
 
 					for i in range(0, len(temp_scientist_list)):
 
@@ -870,7 +892,7 @@ def template_creation_triple_first():
 
 							temp_scientist_list[i] = string_convert
 
-					for k, v in double_pair_dict_sentence_regex.items():
+					for k, v in single_pair_dict_sentence_regex.items():
 
 						if v == list_after_check:
 
@@ -878,13 +900,13 @@ def template_creation_triple_first():
 
 							print("YOOOO")
 
-							template_sentence = double_pair_dict[k]
+							template_sentence = single_pair_dict[k]
 
 							break
 
 					print("\ndouble\n")
 
-					for i in range(len(list_after_triple_check)):
+					for i in range(len(temp_scientist_list)):
 
 						template_sentence = re.sub(r'\{\{(.*?)\}\}', temp_scientist_list[i], template_sentence, count = 1)
 
@@ -898,8 +920,52 @@ def template_creation_triple_first():
 
 	print("\n")
 
+	remaining_final_keys = []
+
 	for i in template_data_remaining_keys:
 
-		print(i)	
+		single_list_temp = []
+
+		template_sentence = ""
+
+		for k, v in single_pair_dict_sentence_regex.items():
+
+			if i == v[0]:
+
+				template_sentence = single_pair_dict[k]
+
+				template_sentence = re.sub(r'\{\{(.*?)\}\}', template_data[v[0]][0], template_sentence, count = 1)
+
+				remaining_final_keys.append(i)
+
+				break
+
+		x = re.findall(r'\{(.*?)\}', template_sentence)
+
+		for j in x:
+
+			if len(template_data[j]) > 1:
+
+				y = '/'.join(template_data[j])
+
+				single_list_temp.append('({})'.format(y))
+
+			else:
+
+				single_list_temp.append(template_data[j][0])
+
+		for j in range(len(x)):
+
+			template_sentence = re.sub(r'\{(.*?)\}', single_list_temp[j], template_sentence, count = 1)
+
+		template += str(" ") + template_sentence
+
+	template_data_remaining_keys = list(set(template_data_remaining_keys) - set(remaining_final_keys))
+
+	print(single_list_temp)
+
+	print(template_data_remaining_keys)
+
+	print(template)
 
 template_creation_triple_first()

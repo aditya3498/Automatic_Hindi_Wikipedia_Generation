@@ -20,6 +20,8 @@ for i in range(1, 250):
 
 			val['alivestatus'] = ['था']
 
+			val['alivestatus/gen'] = ['थी']
+
 			if val['लिंग'][0] == 'महिला':
 
 				val['alivestatus/wgop'] = ['थी']
@@ -31,6 +33,8 @@ for i in range(1, 250):
 				val['रखती/रखते'] = ['रखती']
 
 				val['जुड़े/जुडी'] = ['जुडी']
+
+				val['करते/करती'] = ['करती']
 
 			else:
 
@@ -44,6 +48,8 @@ for i in range(1, 250):
 
 				val['जुड़े/जुडी'] = ['जुड़े']
 
+				val['करते/करती'] = ['करते']
+
 		except:
 
 			val['alivestatus'] = ['है']
@@ -51,6 +57,8 @@ for i in range(1, 250):
 			val['alivestatus/wgok'] = ['है']
 
 			val['alivestatus/wgop'] = ['है']
+
+			val['alivestatus/gen'] = ['है']
 
 			try:
 
@@ -64,6 +72,8 @@ for i in range(1, 250):
 
 					val['जुड़े/जुडी'] = ['जुडी']
 
+					val['करते/करती'] = ['करती']
+
 				else:
 
 					val['हुए/हुई'] = ['हुए']
@@ -73,6 +83,8 @@ for i in range(1, 250):
 					val['के/की'] = ['के']
 
 					val['जुड़े/जुडी'] = ['जुड़े']
+
+					val['करते/करती'] = ['करते']
 
 			except:
 
