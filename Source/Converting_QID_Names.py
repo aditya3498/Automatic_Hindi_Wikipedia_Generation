@@ -4,9 +4,9 @@ from qwikidata.linked_data_interface import get_entity_dict_from_api
 
 updated_key, finaldict = {}, {}
 
-for i in range(302, 303):
+for i in range(1251, 1501):
 
-	with open('../Data/FinalData/FinalData_2500_6000/Cool' + str(i) + '.json', 'r') as f:
+	with open('../Data/FinalData/FinalData_12500_15000/Cool' + str(i) + '.json', 'r') as f:
 
 		for line in f:
 
@@ -16,7 +16,7 @@ for i in range(302, 303):
 
 		try:
 
-			x = get_entity_dict_from_api(str(key))['labels']['en']['value']
+			x = get_entity_dict_from_api(finaldata[key]['QID'])['labels']['en']['value']
 
 			updated_key[key] = str(x)
 
@@ -26,4 +26,6 @@ for i in range(302, 303):
 
 	finaldata = dict((updated_key[key], value) for (key, value) in finaldata.items())
 
-	print(finaldata)
+	with open('../Data/FinalData/FinalData_12500_15000/Cool' + str(i) + '.json', 'w') as fout:
+
+		json.dump(finaldata, fout)

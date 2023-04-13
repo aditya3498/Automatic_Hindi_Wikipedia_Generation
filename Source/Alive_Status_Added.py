@@ -1,10 +1,10 @@
 import json
 
-for i in range(1, 250):
+for i in range(1501, 1721):
 
 	keys_delete = []
 
-	with open('../Data/FinalData/FinalData_1_2500/Cool' + str(i) + '.json', 'r') as fin:
+	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'r') as fin:
 
 		for line in fin:
 
@@ -94,6 +94,6 @@ for i in range(1, 250):
 
 		del alive_status_added[key]
 
-	with open('../Data/FinalData/FinalData_1_2500/Cool' + str(i) + '.json', 'w') as fout:
+	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'w') as fout:
 
 		json.dump(alive_status_added, fout)

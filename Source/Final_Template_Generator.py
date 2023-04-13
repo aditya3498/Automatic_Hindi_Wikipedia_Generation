@@ -324,9 +324,15 @@ def template_creation_triple_first():
 
 	if 'बच्चों की संख्या' in template_data.keys():
 
-		if len(template_data['बच्चों की संख्या']) > 1:
+		template_data['बच्चे/बच्चा'] = []
 
-			template_data['बच्चे/बच्चा']
+		if int(template_data['बच्चों की संख्या'][0]) > 1:
+
+			template_data['बच्चे/बच्चा'].append('बच्चे')
+
+		else:
+
+			template_data['बच्चे/बच्चा'].append('बच्चा')
 
 	if 'पुरस्कार प्राप्त' in template_data.keys():
 
@@ -432,21 +438,17 @@ def template_creation_triple_first():
 
 			template_sentence = triple_pair_dict[key]
 
+			print(template_sentence)
+
 			print("\ntriple\n")
 
 			print(temp_scientist_list)
 
-			print("\n")
+			print("\n")	
 
 			for i in range(0, len(val)):
 
 				template_sentence = re.sub(r'\{\{(.*?)\}\}', temp_scientist_list[i], template_sentence, count = 1)
-
-			if key == "3_Key_9":
-
-				if template_data[val[2]] >= 1:
-
-					temp_find = re.findall(r'\{बच्चे/बच्चा\}', tem)
 
 			x = re.findall(r'\{(.*?)\}', template_sentence)
 
@@ -476,6 +478,8 @@ def template_creation_triple_first():
 
 			print("Final Template Combined:", template)
 
+			print("\n")
+
 		else:
 
 			list_after_triple_check = [x for x in val if x in list_keys_scientist]
@@ -485,6 +489,18 @@ def template_creation_triple_first():
 				template_data_remaining_keys = list(set(template_data_remaining_keys) - set(val))
 
 				print("YO", list_after_triple_check)
+
+				if key == "3_Key_9":
+
+					if 'संतान' in list_after_triple_check:
+
+						if len(template_data['संतान']) > 1:
+
+							template_data['बच्चे/बच्चों'] = ['बच्चों']
+
+						else:
+
+							template_data['बच्चे/बच्चों'] = ['बच्चे']
 
 				for i in range(0, len(list_after_triple_check)):
 
@@ -557,6 +573,8 @@ def template_creation_triple_first():
 				print("\n")
 
 				print(template)
+
+				print("\n")
 
 			else:
 
@@ -637,6 +655,8 @@ def template_creation_triple_first():
 				print("\n")
 
 				print(template)
+
+				print("\n")
 
 	for key, val in triple_pair_dict_sentence_regex.items():
 
@@ -859,6 +879,8 @@ def template_creation_triple_first():
 						print("\n")
 
 						print("Final Template :", template)
+
+						print("\n")
 
 				else:
 

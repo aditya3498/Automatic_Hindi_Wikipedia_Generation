@@ -1,27 +1,29 @@
 import json
 
-template_data = []
+for i in range(251, 601):
 
-for i in range(1, 250):
-
-	with open('../Data/FinalData/FinalData_1_2500/Cool' + str(i) + '.json', 'r') as fin:
+	with open('../Data/FinalData/FinalData_2500_6000/Cool' + str(i) + '.json', 'r') as fin:
 
 		for line in fin:
 
-			template_data.append(json.loads(line))
+			template_data = json.loads(line)
 
-for item in template_data:
-
-	for k, v in item.items():
+	for k, v in template_data.items():
 
 		if 'बच्चों की संख्या' in v.keys():
 
-			value = v['बच्चों की संख्या'][0]['राशि'][-1]
+			try:
 
-			v.update({'बच्चों की संख्या' : [value]})
+				value = v['बच्चों की संख्या'][0]['राशि'][-1]
 
-for i in range(1, 250):
+				v.update({'बच्चों की संख्या' : [value]})
 
-	with open('../Data/FinalData/FinalData_1_2500/Cool' + str(i) + '.json', 'w') as fout:
+			except:
 
-		json.dump(template_data, fout)
+				print(i)
+
+				print(k, v)
+
+	#with open('../Data/FinalData/FinalData_2500_6000/Cool' + str(i) + '.json', 'w') as fout:
+
+		#json.dump(template_data, fout)
