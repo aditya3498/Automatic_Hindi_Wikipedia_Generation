@@ -4,7 +4,7 @@ finaldata_1_2500, finaldata_2500_6000, finaldata_10000_12500, finaldata_6000_100
 
 triple_pair, double_pair, single_pair, finaldata_1_2500, finaldata_2500_6000, finaldata_6000_10000, finaldata_10000_12500, finaldata_12500_15000, finaldata_15000_Final = import_all_data()
 
-for item in finaldata_1_2500:
+for item in finaldata_10000_12500:
 
 	template_data.append(item)
 
@@ -62,7 +62,7 @@ for item in template_data:
 
 count, flag = 0, False
 
-for item in template_data[:20]:
+for item in template_data:
 
 	count += 1
 

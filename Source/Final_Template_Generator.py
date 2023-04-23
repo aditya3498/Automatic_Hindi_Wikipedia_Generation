@@ -1,5 +1,13 @@
 import json, re
 
+import gender_guesser.detector as gender
+
+d = gender.Detector()
+
+from googletrans import Translator
+
+translator = Translator()
+
 def import_all_data():
 	
 	finaldata_1_2500, finaldata_2500_6000, finaldata_10000_12500, finaldata_6000_10000, finaldata_12500_15000, finaldata_15000_Final = [], [], [], [], [], []
@@ -444,7 +452,37 @@ def template_creation_triple_first():
 
 			print(temp_scientist_list)
 
-			print("\n")	
+			print("\n")
+
+			x = re.findall(r'(\{\{(.*?)\}\})|(\{(.*?)\})', template_sentence)
+
+			for index in range(len(x)):
+
+				x[index] = [a for a in x[index] if a][1]
+
+			y = [i for i in range(len(x)) if x[i] == 'alivestatus/wgok']
+
+			z = [i - 1 for i in y]
+
+			if len(z) != 0:
+
+				for i in z:
+
+					if d.get_gender(translator.translate(template_data[x[i]][-1]).text.split()[0]) == "male" or d.get_gender(translator.translate(template_data[x[i]][-1]).text.split()[0]) == "mostly_male":
+
+						print("MALE")
+
+						if len(template_data['alivestatus/wgok']) > 1:
+
+							template_sentence = re.sub(r'\{alivestatus/wgok\}', 'थे', template_sentence, count = 1)
+
+					elif d.get_gender(translator.translate(template_data[x[i]][-1]).text.split()[0]) == "female" or d.get_gender(translator.translate(template_data[x[i]][-1]).text.split()[0]) == "mostly_female":
+
+						print("FEMALE")
+
+						if len(template_data['alivestatus/wgok']) > 1:
+
+							template_sentence = re.sub(r'\{alivestatus/wgok\}', 'थी', template_sentence, count = 1)
 
 			for i in range(0, len(val)):
 
@@ -540,7 +578,37 @@ def template_creation_triple_first():
 
 				print("\ndouble\n")
 
-				#print("Template Sentence :", template_sentence)
+				x = re.findall(r'(\{\{(.*?)\}\})|(\{(.*?)\})', template_sentence)
+
+				for index in range(len(x)):
+
+					x[index] = [a for a in x[index] if a][1]
+
+				y = [i for i in range(len(x)) if x[i] == 'alivestatus/wgok']
+
+				z = [i - 1 for i in y]
+
+				if len(z) != 0:
+
+					for i in z:
+
+						print(template_data[x[i]])
+
+						if d.get_gender(translator.translate(template_data[x[i]][-1]).text.split()[0]) == "male" or d.get_gender(translator.translate(template_data[x[i]][-1]).text.split()[0]) == 'mostly_male':
+
+							print("MALE")
+
+							if len(template_data['alivestatus/wgok']) > 1:
+
+								template_sentence = re.sub(r'\{alivestatus/wgok\}', 'थे', template_sentence, count = 1)
+
+						elif d.get_gender(translator.translate(template_data[x[i]][-1]).text.split()[0]) == "female" or d.get_gender(translator.translate(template_data[x[i]][-1]).text.split()[0]) == "mostly_female":
+
+							print("FEMALE")
+
+							if len(template_data['alivestatus/wgok']) > 1:
+
+								template_sentence = re.sub(r'\{alivestatus/wgok\}', 'थी', template_sentence, count = 1)
 
 				for i in range(len(list_after_triple_check)):
 
@@ -623,6 +691,36 @@ def template_creation_triple_first():
 				print(list_after_triple_check)
 
 				print("SINGLE")
+
+				x = re.findall(r'(\{\{(.*?)\}\})|(\{(.*?)\})', template_sentence)
+
+				for index in range(len(x)):
+
+					x[index] = [a for a in x[index] if a][1]
+
+				y = [i for i in range(len(x)) if x[i] == 'alivestatus/wgok']
+
+				z = [i - 1 for i in y]
+
+				if len(z) != 0:
+
+					for i in z:
+
+						if d.get_gender(translator.translate(template_data[x[i]][-1]).text.split()[0]) == "male" or d.get_gender(translator.translate(template_data[x[i]][-1]).text.split()[0]) == "mostly_male":
+
+							print("MALE")
+
+							if len(template_data['alivestatus/wgok']) > 1:
+
+								template_sentence = re.sub(r'\{alivestatus/wgok\}', 'थे', template_sentence, count = 1)
+
+						elif d.get_gender(translator.translate(template_data[x[i]][-1]).text.split()[0]) == "female" or d.get_gender(translator.translate(template_data[x[i]][-1]).text.split()[0]) == "mostly_female":
+
+							print("FEMALE")
+
+							if len(template_data['alivestatus/wgok']) > 1:
+
+								template_sentence = re.sub(r'\{alivestatus/wgok\}', 'थी', template_sentence, count = 1)
 
 				for i in range(len(list_after_triple_check)):
 
@@ -963,6 +1061,12 @@ def template_creation_triple_first():
 				break
 
 		x = re.findall(r'\{(.*?)\}', template_sentence)
+
+		for j in x:
+
+			if j == "alivestatus/wgok":
+
+				print(j)
 
 		for j in x:
 

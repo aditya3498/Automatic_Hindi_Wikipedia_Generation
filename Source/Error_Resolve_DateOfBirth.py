@@ -2,91 +2,43 @@ import json
 
 from qwikidata.linked_data_interface import get_entity_dict_from_api
 
-exceptions, map_data = [], []
+for i in range(246, 247):
 
-for i in range(1, 334):
-
-	with open('../QID_MAP/QID_NAME_MAP' + str(i) + '.json', 'r') as fin:
-
-		for line in fin:
-
-			map_data.append(json.loads(line))
-
-for i in range(416, 417):
-
-	with open('../Data/FinalData/FinalData_2500_6000/Cool' + str(i) + '.json', 'r') as fin:
+	with open('../Data/FinalData/FinalData_1_2500/Cool' + str(i) + '.json', 'r') as fin:
 	
 		for line in fin:
 
 			data = json.loads(line)
 
-	for val in data.values():
+	try:
 
-		new_dict = {key : value for key, value in val['Hindi'].items() if key != 'QID'}
+		text_dob = get_entity_dict_from_api(data['Nikolay Mel\'nikov']['QID'])['claims']['P569']
 
-		val['Hindi'] = new_dict
+		data['Nikolay Mel\'nikov'].update({'जन्म तिथि' : text_dob[0]['mainsnak']['datavalue']['value']})
 
-	delete = []
+	except:
 
-	for key, value in data.items():
+		print("QID ERROR")
 
-		flag = 0
+	try:
 
-		for item in map_data:
+		text_dod = get_entity_dict_from_api(data['Nikolay Mel\'nikov']['QID'])['claims']['P570']
 
-			for k, v in item.items():
+		data['Nikolay Mel\'nikov'].update({'मृत्यु तिथि' : text_dod[0]['mainsnak']['datavalue']['value']})
 
-				if key == v:
+	except:
 
-					value['Hindi']['QID'] = k
+		print("DEATH")
 
-					flag = 1
-
-					break
-
-			if flag == 1:
-
-				break
-
-		if flag == 0:
-
-			#print(i)
-
-			#print(key)
-
-			delete.append(key)
-
-	for item in delete:
-
-		del data[item]
+	#print(data)				
 
 	#print(data)
 
-	delete_again = []
+	#with open('../Data/FinalData/FinalData_1_2500/Cool' + str(i) + '.json', 'w') as fout:
 
-	for key, val in data.items():
+	#	json.dump(data, fout)
 
-		if 'QID' in val['Hindi'].keys():
-
-			try:
-
-				text_dob = get_entity_dict_from_api(val['Hindi']['QID'])['claims']['P569']
-
-				val['Hindi'].update({'जन्म तिथि' : text_dob[0]['mainsnak']['datavalue']['value']})				
-
-			except:
-
-				delete_again.append(key)
-
-				continue
-
-	for item in delete_again:
-
-		del data[item]
-
-	delete_again_2 = []
-
-	for key, val in data.items():
+	'''for key, val in data.items():
 
 		if 'QID' in val['Hindi'].keys():
 
@@ -106,8 +58,8 @@ for i in range(416, 417):
 
 		del data[item]
 
-	#print(len(data))
+	#print(len(data))'''
 
-	with open('../Data/FinalData/FinalData_2500_6000/Cool' + str(i) + '.json', 'w') as fout:
+	with open('../Data/FinalData/FinalData_1_2500/Cool' + str(i) + '.json', 'w') as fout:
 	
 		json.dump(data, fout)

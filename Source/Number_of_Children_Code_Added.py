@@ -1,8 +1,12 @@
 import json
 
-for i in range(251, 601):
+from anuvaad import Anuvaad
 
-	with open('../Data/FinalData/FinalData_2500_6000/Cool' + str(i) + '.json', 'r') as fin:
+anu = Anuvaad('english-hindi')
+
+for i in range(1251, 1501):
+
+	with open('./Cool' + str(i) + '.json', 'r') as fin:
 
 		for line in fin:
 
@@ -12,18 +16,30 @@ for i in range(251, 601):
 
 		if 'बच्चों की संख्या' in v.keys():
 
-			try:
+			temp_dict, new_dict = {}, {}
 
-				value = v['बच्चों की संख्या'][0]['राशि'][-1]
+			temp_dict['बच्चों की संख्या'] = {}
 
-				v.update({'बच्चों की संख्या' : [value]})
+			temp_dict['बच्चों की संख्या']['amount'] = template_data[k]['बच्चों की संख्या']['amount']
 
-			except:
+			v.update({list(temp_dict.keys())[0] : temp_dict['बच्चों की संख्या']})
 
-				print(i)
+			text_translate = anu.anuvaad(list(template_data[k]['बच्चों की संख्या'].keys())[0])
 
-				print(k, v)
+			new_dict[text_translate] = template_data[k]['बच्चों की संख्या']['amount']
 
-	#with open('../Data/FinalData/FinalData_2500_6000/Cool' + str(i) + '.json', 'w') as fout:
+			v.update({list(temp_dict.keys())[0] : new_dict})
 
-		#json.dump(template_data, fout)
+			#print(template_data[k])
+
+			value = v['बच्चों की संख्या']['राशि'][-1]
+
+			v.update({'बच्चों की संख्या' : [value]})
+
+			print(template_data[k])
+
+			#print(template_data[k])
+
+	with open('./Cool' + str(i) + '.json', 'w') as fout:
+
+		json.dump(template_data, fout)

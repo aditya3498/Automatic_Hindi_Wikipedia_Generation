@@ -26,6 +26,6 @@ for i in range(1251, 1501):
 
 	finaldata = dict((updated_key[key], value) for (key, value) in finaldata.items())
 
-	with open('../Data/FinalData/FinalData_12500_15000/Cool' + str(i) + '.json', 'w') as fout:
+	with open('../Data/FinalData/FinalData_15000/Cool' + str(i) + '.json', 'w') as fout:
 
 		json.dump(finaldata, fout)

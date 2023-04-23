@@ -1,21 +1,23 @@
 import json 
 
-with open('../QID_MAP/QID_NAME_MAP333.json', 'r') as fin:
+from qwikidata.linked_data_interface import get_entity_dict_from_api
+
+with open('../Data/FinalData/FinalData_1_2500/Cool246.json', 'r') as fin:
 
 	for line in fin:
 
 		data = json.loads(line)
 
-data['Q6681655'] = 'Lorraine Lisiecki'
+#x = get_entity_dict_from_api(data['Peter Wright']['QID'])['claims'].keys()
 
-data['Q6763142'] = 'Hussein Hamid'
+#for keys in x:
 
-data['Q12755420'] = 'Milorad Pavlović'
+#	y = get_entity_dict_from_api(keys)
 
-data['Q7331943'] = 'Rickey B. Cotton'
+#del data['Mikhail Krishtal']
 
-data['Q6763142'] = 'Hussein Hamid'
+data['Nikolay Mel\'nikov']['QID'] = "Q4289886"
 
-with open('../QID_MAP/QID_NAME_MAP333.json', 'w') as fout:
+with open('../Data/FinalData/FinalData_1_2500/Cool246.json', 'w') as fout:
 
 	json.dump(data, fout)
