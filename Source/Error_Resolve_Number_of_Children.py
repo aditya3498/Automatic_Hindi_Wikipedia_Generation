@@ -2,9 +2,9 @@ import json
 
 from qwikidata.linked_data_interface import get_entity_dict_from_api
 
-for i in range(1251, 1501):
+for i in range(1501, 1721):
 
-	with open('../Data/FinalData/FinalData_12500_15000/Cool' + str(i) + '.json', 'r') as fin:
+	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'r') as fin:
 
 		for line in fin:
 
@@ -30,6 +30,6 @@ for i in range(1251, 1501):
 
 			print(k, v)
 
-	with open('../Data/FinalData/FinalData_12500_15000/Cool' + str(i) + '.json', 'w') as fout:
+	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'w') as fout:
 
 		json.dump(template_data, fout)

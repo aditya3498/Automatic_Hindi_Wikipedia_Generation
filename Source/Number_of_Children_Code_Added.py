@@ -4,7 +4,7 @@ from anuvaad import Anuvaad
 
 anu = Anuvaad('english-hindi')
 
-for i in range(1251, 1501):
+for i in range(1, 250):
 
 	with open('./Cool' + str(i) + '.json', 'r') as fin:
 
@@ -40,6 +40,6 @@ for i in range(1251, 1501):
 
 			#print(template_data[k])
 
-	with open('./Cool' + str(i) + '.json', 'w') as fout:
+	#with open('./Cool' + str(i) + '.json', 'w') as fout:
 
-		json.dump(template_data, fout)
+	#	json.dump(template_data, fout)

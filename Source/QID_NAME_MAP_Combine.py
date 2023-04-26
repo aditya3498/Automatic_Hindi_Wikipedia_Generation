@@ -2,7 +2,11 @@ import json
 
 from qwikidata.linked_data_interface import get_entity_dict_from_api
 
-with open('../Data/FinalData/FinalData_1_2500/Cool246.json', 'r') as fin:
+input1 = str(input())
+
+input2 = str(input())
+
+with open('../Data/FinalData/FinalData_15000_Final/Cool' + input1 + '.json', 'r') as fin:
 
 	for line in fin:
 
@@ -14,10 +18,12 @@ with open('../Data/FinalData/FinalData_1_2500/Cool246.json', 'r') as fin:
 
 #	y = get_entity_dict_from_api(keys)
 
-#del data['Mikhail Krishtal']
+del data[input2]['मृत्यु तिथि']
 
-data['Nikolay Mel\'nikov']['QID'] = "Q4289886"
+#del data[input2]['जन्म तिथि']
 
-with open('../Data/FinalData/FinalData_1_2500/Cool246.json', 'w') as fout:
+#data['Pavel Komárek']['QID'] = "Q95227850"
+
+with open('../Data/FinalData/FinalData_15000_Final/Cool' + input1 + '.json', 'w') as fout:
 
 	json.dump(data, fout)

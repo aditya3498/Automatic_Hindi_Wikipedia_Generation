@@ -2,33 +2,45 @@ import json
 
 from qwikidata.linked_data_interface import get_entity_dict_from_api
 
-for i in range(246, 247):
+input1 = str(input())
 
-	with open('../Data/FinalData/FinalData_1_2500/Cool' + str(i) + '.json', 'r') as fin:
+input2 = str(input())
+
+with open('../Data/FinalData/FinalData_2500_6000/Cool' + input1 + '.json', 'r') as fin:
 	
-		for line in fin:
+	for line in fin:
 
-			data = json.loads(line)
+		data = json.loads(line)
 
 	try:
 
-		text_dob = get_entity_dict_from_api(data['Nikolay Mel\'nikov']['QID'])['claims']['P569']
+		text_dob = get_entity_dict_from_api(data[input2]['QID'])['claims']['P569']
 
-		data['Nikolay Mel\'nikov'].update({'जन्म तिथि' : text_dob[0]['mainsnak']['datavalue']['value']})
+		data[input2].update({'जन्म तिथि' : text_dob[0]['mainsnak']['datavalue']['value']})
 
 	except:
 
 		print("QID ERROR")
 
+		#print(key, val)
+
 	try:
 
-		text_dod = get_entity_dict_from_api(data['Nikolay Mel\'nikov']['QID'])['claims']['P570']
+		text_dod = get_entity_dict_from_api(data[input2]["QID"])['claims']['P570']
 
-		data['Nikolay Mel\'nikov'].update({'मृत्यु तिथि' : text_dod[0]['mainsnak']['datavalue']['value']})
+		data[input2].update({'मृत्यु तिथि' : text_dod[0]['mainsnak']['datavalue']['value']})
+
+		print(data[input2])
 
 	except:
 
 		print("DEATH")
+
+			#print(i)
+
+			#print(key, value)'''
+
+	#print(data[input2])
 
 	#print(data)				
 
@@ -60,6 +72,6 @@ for i in range(246, 247):
 
 	#print(len(data))'''
 
-	with open('../Data/FinalData/FinalData_1_2500/Cool' + str(i) + '.json', 'w') as fout:
+with open('../Data/FinalData/FinalData_2500_6000/Cool' + input1 + '.json', 'w') as fout:
 	
-		json.dump(data, fout)
+	json.dump(data, fout)

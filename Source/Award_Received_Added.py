@@ -8,7 +8,7 @@ final_data = []
 
 exceptions = {}
 
-for i in range(1501, 1721):
+for i in range(1, 250):
 
 	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'r') as fin:
 

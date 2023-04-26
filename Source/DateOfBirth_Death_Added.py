@@ -8,25 +8,25 @@ def month_to_text(month):
 
 	switcher = {
 
-		1 : "January",
-		2 : "February",
-		3 : "March",
-		4 : "April",
-		5 : "May",
-		6 : "June",
-		7 : "July",
-		8 : "August",
-		9 : "September",
-		10 : "October",
-		11 : "November",
-		12 : "December"
+		1 : "जनवरी",
+		2 : "फ़रवरी",
+		3 : "मार्च",
+		4 : "अप्रैल",
+		5 : "मई",
+		6 : "जून",
+		7 : "जुलाई",
+		8 : "अगस्त",
+		9 : "सितम्बर",
+		10 : "अक्टूबर",
+		11 : "नवम्बर",
+		12 : "दिसम्बर"
 	}
 
 	return switcher.get(month, "N/A")
 
-for i in range(1, 250):
+for i in range(1501, 1721):
 
-	with open('../Data/FinalData/FinalData_1_2500/Cool' + str(i) + '.json', 'r') as fin:
+	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'r') as fin:
 
 		for line in fin:
 
@@ -64,7 +64,9 @@ for i in range(1, 250):
 
 						val.update({k : [dob_text_final]})
 
-				except:
+				except Exception as e:
+
+					print(e)
 
 					print(i)	
 
@@ -102,7 +104,11 @@ for i in range(1, 250):
 
 						val.update({k : [dob_text_final]})
 
-				except:
+				except Exception as e:
+
+					print(e)
+
+					print(i)
 
 					print("DOD")
 
@@ -110,8 +116,10 @@ for i in range(1, 250):
 
 					print(k, value)
 
+	#print(finaldata['Irène Joliot-Curie'])
+
 	#print(finaldata)
 
-	#with open('../Data/FinalData/FinalData_1_2500/Cool' + str(i) + '.json', 'w') as fout:
+	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'w') as fout:
 
-	#	json.dump(finaldata, fout)
+		json.dump(finaldata, fout)
