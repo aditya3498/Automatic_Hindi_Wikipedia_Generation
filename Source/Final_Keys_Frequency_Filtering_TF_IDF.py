@@ -12,11 +12,11 @@ for i in range(1, 250):
 
 		for line in fin:
 
-			final_data = json.loads(line)
+			final_data.append(json.loads(line))
 
 		#print(final_data)
 
-		for key, val in final_data.items():
+		'''for key, val in final_data.items():
 
 			if 'कार्य क्षेत्र' in val['Hindi']:
 
@@ -30,17 +30,17 @@ for i in range(1, 250):
 
 		if flag == 1:
 
-			break
+			break'''
 
-'''for i in range(251, 601):
+for i in range(251, 601):
 
-	with open('../Data/FinalData_2500_6000/Cool' + str(i) + '.json', 'r') as fin:
+	with open('../Data/FinalData/FinalData_2500_6000/Cool' + str(i) + '.json', 'r') as fin:
 
 		for line in fin:
 
-			final_data = json.loads(line)
+			final_data.append(json.loads(line))
 
-		for key, val in final_data.items():
+		'''for key, val in final_data.items():
 
 			if 'संबंधी' in val['Hindi'] and 'संबंधन' in val['Hindi']:
 
@@ -54,17 +54,17 @@ for i in range(1, 250):
 
 		if flag == 1:
 
-			break
+			break'''
 
 for i in range(601, 1001):
 
-	with open('../Data/FinalData_6000_10000/Cool' + str(i) + '.json', 'r') as fin:
+	with open('../Data/FinalData/FinalData_6000_10000/Cool' + str(i) + '.json', 'r') as fin:
 
 		for line in fin:
 
-			final_data = json.loads(line)
+			final_data.append(json.loads(line))
 
-		for key, val in final_data.items():
+		'''for key, val in final_data.items():
 
 			if 'इसमें अनुरक्त' in val['Hindi'] and 'शैली' in val['Hindi']:
 
@@ -78,17 +78,17 @@ for i in range(601, 1001):
 
 		if flag == 1:
 
-			break
+			break'''
 
 for i in range(1001, 1251):
 
-	with open('../Data/FinalData_10000_12500/Cool' + str(i) + '.json', 'r') as fin:
+	with open('../Data/FinalData/FinalData_10000_12500/Cool' + str(i) + '.json', 'r') as fin:
 
 		for line in fin:
 
-			final_data = json.loads(line)
+			final_data.append(json.loads(line))
 
-		for key, val in final_data.items():
+		'''for key, val in final_data.items():
 
 			if 'शैली' in val['Hindi']:
 
@@ -102,17 +102,17 @@ for i in range(1001, 1251):
 
 		if flag == 1:
 
-			break
+			break'''
 
 for i in range(1251, 1501):
 
-	with open('../Data/FinalData_12500_15000/Cool' + str(i) + '.json', 'r') as fin:
+	with open('../Data/FinalData/FinalData_12500_15000/Cool' + str(i) + '.json', 'r') as fin:
 
 		for line in fin:
 
-			final_data = json.loads(line)
+			final_data.append(json.loads(line))
 
-		for key, val in final_data.items():
+		'''for key, val in final_data.items():
 
 			if 'इसमें अनुरक्त' in val['Hindi'] and 'शैली' in val['Hindi']:
 
@@ -126,21 +126,21 @@ for i in range(1251, 1501):
 
 		if flag == 1:
 
-			break
+			break'''
 
 for i in range(1501, 1721):
 
-	with open('../Data/FinalData_15000_Final/Cool' + str(i) + '.json', 'r') as fin:
+	with open('../Data/FinalData/FinalData_15000_Final/Cool' + str(i) + '.json', 'r') as fin:
 
 		for line in fin:
 
-			final_data = json.loads(line)
+			final_data.append(json.loads(line))
 
-for item in final_data:
+'''for item in final_data:
 
 	for val in item.values():
 
-		del val['English']
+		del val['English']'''
 
 #print(final_data[0])
 
@@ -148,7 +148,7 @@ for item in final_data:
 
 	for val in item.values():
 
-		for key in val['Hindi'].keys():
+		for key in val.keys():
 
 			if key in frequency_item:
 
@@ -172,4 +172,4 @@ for item in sorted(frequency_item, key = frequency_item.get, reverse = True):
 
 	print(item, frequency_item[item])
 
-	print("\n")'''
+	print("\n")
