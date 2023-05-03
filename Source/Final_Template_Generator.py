@@ -882,7 +882,7 @@ def template_creation_triple_first():
 
 				print(list_after_check)
 
-				if len(list_after_check) == len(val) - 1 or len(list_after_check) == 3:
+				if len(list_after_check) == len(val) - 1:
 
 					template_data_remaining_keys = list(set(template_data_remaining_keys) - set(val))
 
@@ -903,7 +903,7 @@ def template_creation_triple_first():
 							string_convert = template_data['पुरस्कार प्राप्त'][0]
 
 						temp_scientist_list = [template_data['Scientist'][0], reason_insert, prize_insert, string_convert]
-				
+			
 						print(temp_scientist_list)
 
 						print("\n")
@@ -980,6 +980,50 @@ def template_creation_triple_first():
 
 						print("\n")
 
+				elif len(list_after_check) == 3:
+
+					template_data_remaining_keys = list(set(template_data_remaining_keys) - set(val))
+
+					for i in range(len(list_after_check)):
+
+						if len(template_data[list_after_check[i]]) <= 1:
+
+							temp_scientist_list.append(template_data[list_after_check[i]][0])
+
+						else:
+
+							temp_scientist_list.append(template_data[list_after_check[i]])
+
+					for i in range(0, len(temp_scientist_list)):
+
+						if isinstance(temp_scientist_list[i], list):
+
+							string_convert = ', '.join(temp_scientist_list[i][:-1]) + ' और ' + temp_scientist_list[i][-1]
+
+							temp_scientist_list[i] = string_convert
+
+					for k, v in double_pair_dict_sentence_regex.items():
+
+						if v == list_after_check:
+
+							template_sentence = double_pair_dict[k]
+
+							break
+
+					print("\ndouble\n")
+
+					for i in range(len(temp_scientist_list)):
+
+						template_sentence = re.sub(r'\{\{(.*?)\}\}', temp_scientist_list[i], template_sentence, count = 1)
+
+					template += str(" ") + template_sentence
+
+					print(template_sentence)
+
+					print("\n")
+
+					print(template)
+
 				else:
 
 					template_data_remaining_keys = list(set(template_data_remaining_keys) - set(val))
@@ -1018,13 +1062,13 @@ def template_creation_triple_first():
 
 							print(k)
 
-							print("YOOOO")
+							print("YO")
 
 							template_sentence = single_pair_dict[k]
 
 							break
 
-					print("\ndouble\n")
+					print("\nsingle\n")
 
 					for i in range(len(temp_scientist_list)):
 
